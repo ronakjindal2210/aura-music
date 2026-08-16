@@ -56,9 +56,9 @@ if __name__ == '__main__':
     server = ThreadingHTTPServer(('0.0.0.0', port), RangeRequestHandler)
     local_ip = get_local_ip()
     print("=" * 60)
-    print(f"✦ AURA Server is running!")
-    print(f"  • Local PC URL:      http://localhost:{port}")
-    print(f"  • Mobile Phone URL:  http://{local_ip}:{port}")
+    print("AURA Server is running!")
+    print(f"  * Local PC URL:      http://localhost:{port}")
+    print(f"  * Mobile Phone URL:  http://{local_ip}:{port}")
     print("=" * 60)
     try:
         server.serve_forever()
