@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>AURA ♡ Made Just For You</title>
+  <meta name="description" content="20 little worlds made from 20 songs. A cozy personalized music gift." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/design-system.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/transitions.css" />
+</head>
+<body>
+
+  <!-- 1. WARM, DREAMY & CUTE OPENING PORTAL -->
+  <div class="intro-portal" id="introPortal">
+    <!-- Soft glowing ambient pastel blobs -->
+    <div class="cute-blob blob-pink"></div>
+    <div class="cute-blob blob-peach"></div>
+    <div class="cute-blob blob-lavender"></div>
+    <div class="cute-blob blob-blue"></div>
+    <div class="cute-blob blob-yellow"></div>
+    <div class="cute-stardust-grid"></div>
+
+    <!-- Center Gift Opening Card -->
+    <div class="cute-gift-card">
+      <div class="cute-top-pill">
+        <span class="sparkle-icon">✦</span>
+        <span>made just for you</span>
+        <span class="sparkle-icon">✦</span>
+      </div>
+
+      <h1 class="cute-brand-title">AURA</h1>
+      <p class="cute-gift-tagline">20 little worlds made from 20 songs</p>
+
+      <div class="cute-sound-pulse">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <button class="cute-open-btn" id="btnOpenGift" aria-label="Open Gift">
+        <span>open ♡</span>
+      </button>
+
+      <div class="cute-footer-note">
+        <span>headphones recommended 🎧</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MAIN APP CONTAINER -->
+  <div class="app-container" id="appContainer">
+
+    <!-- Living World Background Stage -->
+    <div class="background-stage" id="backgroundStage">
+      <div class="bg-layer active" id="bgLayerA"></div>
+      <div class="bg-layer incoming" id="bgLayerB"></div>
+      <div class="atmosphere-vignette"></div>
+
+      <!-- Subtle Screen Overlays -->
+      <div class="screen-fx-layer fx-grain active" id="fxGrain"></div>
+      <div class="screen-fx-layer fx-vignette active" id="fxVignette"></div>
+
+      <!-- Ambient Particles Canvas -->
+      <canvas class="canvas-particles" id="canvasParticles"></canvas>
+    </div>
+
+    <!-- Top Navigation Bar in World View -->
+    <header class="world-top-bar" id="worldTopBar">
+      <button class="top-action-btn" id="btnOpenHome" title="Open Home Menu">
+        <span class="icon">🏠</span>
+        <span class="label">Home</span>
+      </button>
+
+      <div class="top-world-badge" id="topWorldBadge">
+        <span class="badge-dot"></span>
+        <span class="badge-text" id="topBadgeText">Himalayan Twilight</span>
+      </div>
+
+      <div class="top-bar-right">
+        <button class="top-action-btn diary-btn" id="btnOpenDiary" title="Open Secret Diary">
+          <span class="icon">📖</span>
+          <span class="label">Diary</span>
+        </button>
+
+        <button class="top-action-btn note-btn" id="btnSongNote" title="Personal Note for this song">
+          <span class="icon">♡</span>
+          <span class="label">little note</span>
+        </button>
+
+        <button class="top-action-btn tonight-toggle-btn" id="btnTonightTop" title="Toggle Tonight Mode">
+          <span class="icon">☾</span>
+        </button>
+
+        <button class="top-action-btn universe-btn" id="btnUniverseTop" title="The Little Universe Map">
+          <span class="icon">✨</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 3. IMMERSIVE LIVING WORLD VIEW -->
+    <main class="world-center-stage" id="worldCenterStage" aria-label="Living World Stage"></main>
+
+    <!-- Edge Navigation Arrows (Desktop / Tablet) -->
+    <button class="edge-nav prev" id="edgePrev" title="Previous World (←)" aria-label="Previous World">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="edge-nav next" id="edgeNext" title="Next World (→)" aria-label="Next World">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- 4. COLLAPSED MOBILE MINI PLAYER (Sticky at Bottom) -->
+    <footer class="bottom-dock-container" id="bottomDockContainer">
+      <div class="aura-mini-player" id="auraMiniPlayer" title="Tap to open Now Playing">
+        <!-- Track thumbnail & info -->
+        <div class="mini-track-info">
+          <div class="mini-thumb-wrap">
+            <img src="assets/images/world_01.jpg" id="miniThumb" alt="Track thumbnail" class="mini-thumb" />
+            <div class="mini-play-ring"></div>
+          </div>
+          <div class="mini-text">
+            <div class="mini-title" id="miniTitle">Samjhawan</div>
+            <div class="mini-artist" id="miniArtist">Arijit Singh & Shreya Ghoshal</div>
+          </div>
+        </div>
+
+        <!-- Mini Controls -->
+        <div class="mini-actions" onclick="event.stopPropagation()">
+          <button class="mini-btn fav-btn" id="miniFavBtn" title="Favorite" aria-label="Favorite">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </button>
+          <button class="mini-btn play-btn" id="miniPlayBtn" title="Play/Pause" aria-label="Play/Pause">
+            <span id="miniPlayIcon">
+              <polygon points="6 4 19 12 6 20 6 4" fill="currentColor"/>
+            </span>
+          </button>
+        </div>
+
+        <!-- Mini Progress Bar Line -->
+        <div class="mini-progress-line" id="miniProgressLine"></div>
+      </div>
+    </footer>
+
+    <!-- 5. FULLSCREEN NOW PLAYING MODAL / BOTTOM SHEET -->
+    <div class="now-playing-modal" id="nowPlayingModal">
+      <div class="now-playing-sheet">
+        <!-- Pull handle -->
+        <div class="sheet-drag-handle" id="sheetDragHandle">
+          <span class="handle-bar"></span>
+        </div>
+
+        <div class="sheet-top-header">
+          <button class="sheet-close-btn" id="closeNowPlayingBtn" aria-label="Collapse Player">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="sheet-header-title">NOW PLAYING</div>
+          <button class="sheet-note-btn" id="sheetSongNoteBtn" title="Little Note">
+            <span>♡ note</span>
+          </button>
+        </div>
+
+        <!-- Big Album / World Art -->
+        <div class="sheet-artwork-container">
+          <div class="sheet-art-glow" id="sheetArtGlow"></div>
+          <img src="assets/images/world_01.jpg" id="sheetThumb" alt="Album Art" class="sheet-art-img" />
+          <div class="sheet-badge-overlay" id="sheetBadgeOverlay">✦ Amber Twilight</div>
+        </div>
+
+        <!-- Title & Artist -->
+        <div class="sheet-track-details">
+          <div class="sheet-title-row">
+            <div class="sheet-title" id="sheetTitle">Samjhawan</div>
+            <button class="sheet-fav-btn" id="sheetFavBtn" aria-label="Favorite">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+          </div>
+          <div class="sheet-artist" id="sheetArtist">Arijit Singh & Shreya Ghoshal</div>
+        </div>
+
+        <!-- Seekbar Timeline -->
+        <div class="sheet-timeline-wrap">
+          <div class="seekbar-container" id="seekbarContainer">
+            <div class="seekbar-bg">
+              <div class="seekbar-fill" id="seekbarFill"></div>
+            </div>
+            <div class="seekbar-handle" id="seekbarHandle"></div>
+          </div>
+          <div class="sheet-timestamps">
+            <span id="timeCurrent">0:00</span>
+            <span id="timeTotal">4:25</span>
+          </div>
+        </div>
+
+        <!-- Transport Controls -->
+        <div class="sheet-controls">
+          <button class="sheet-ctrl-btn" id="shuffleBtn" title="Shuffle" aria-label="Shuffle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+          </button>
+          <button class="sheet-ctrl-btn" id="prevBtn" title="Previous (←)" aria-label="Previous">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+          </button>
+          <button class="sheet-play-btn" id="playPauseBtn" title="Play/Pause" aria-label="Play/Pause">
+            <span id="playPauseIcon">
+              <polygon points="6 4 19 12 6 20 6 4" fill="currentColor"/>
+            </span>
+          </button>
+          <button class="sheet-ctrl-btn" id="nextBtn" title="Next (→)" aria-label="Next">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+          </button>
+          <button class="sheet-ctrl-btn" id="repeatBtn" title="Repeat" aria-label="Repeat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </button>
+        </div>
+
+        <!-- Bottom Sheet Extras -->
+        <div class="sheet-footer-tools">
+          <button class="sheet-tool-pill" id="btnDiarySheet">
+            <span class="icon">📖</span>
+            <span>My Diary</span>
+          </button>
+          <button class="sheet-tool-pill" id="btnTonightSheet">
+            <span class="icon">☾</span>
+            <span>Tonight Mode</span>
+          </button>
+          <button class="sheet-tool-pill" id="btnUniverseSheet">
+            <span class="icon">✨</span>
+            <span>The Little Universe</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. PERSONALIZED HOME DRAWER / SCREEN -->
+    <div class="home-drawer" id="homeDrawer">
+      <div class="home-drawer-backdrop" id="homeBackdrop"></div>
+      <div class="home-drawer-content">
+        <!-- Close Home -->
+        <div class="home-header">
+          <div>
+            <h2 class="home-greeting" id="homeGreeting">Good evening ♡</h2>
+            <p class="home-subtitle">I made you something.</p>
+          </div>
+          <button class="home-close-btn" id="closeHomeBtn" aria-label="Close Home">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- Continue Listening Card (if available) -->
+        <div class="continue-listening-card" id="continueCard">
+          <div class="continue-thumb-wrap">
+            <img src="assets/images/world_01.jpg" id="continueThumb" alt="Continue track" />
+            <div class="continue-play-icon">▶</div>
+          </div>
+          <div class="continue-info">
+            <span class="continue-label">Continue Listening</span>
+            <div class="continue-title" id="continueTitle">Samjhawan</div>
+            <div class="continue-sub" id="continueSub">resume where you left off ♡</div>
+          </div>
+        </div>
+
+        <!-- Quick Action Grid -->
+        <div class="home-quick-actions">
+          <div class="quick-action-card diary-card" id="btnQuickDiary">
+            <span class="qa-icon">📖</span>
+            <div class="qa-title">Secret Diary</div>
+            <div class="qa-desc">pen your thoughts ♡</div>
+          </div>
+
+          <div class="quick-action-card universe-card" id="btnQuickUniverse">
+            <div class="card-glow-circle"></div>
+            <span class="qa-icon">✨</span>
+            <div class="qa-title">The Little Universe</div>
+            <div class="qa-desc">20 glowing stars</div>
+          </div>
+
+          <div class="quick-action-card surprise-card" id="btnQuickSurprise">
+            <span class="qa-icon">🎲</span>
+            <div class="qa-title">Surprise Me</div>
+            <div class="qa-desc">pick a world for me</div>
+          </div>
+
+          <div class="quick-action-card tonight-card" id="btnQuickTonight">
+            <span class="qa-icon">☾</span>
+            <div class="qa-title">Tonight Mode</div>
+            <div class="qa-desc" id="tonightStatusText">warm & slow</div>
+          </div>
+        </div>
+
+        <!-- Exploration Progress Badge & Secret Trigger -->
+        <div class="exploration-progress-card" id="progressCard">
+          <div class="progress-left">
+            <span class="progress-icon">🌌</span>
+            <div>
+              <div class="progress-text"><span id="exploredCount">1</span> / 20 Worlds Explored</div>
+              <div class="progress-sub" id="progressSub">listen to all 20 to unlock something special ♡</div>
+            </div>
+          </div>
+          <button class="secret-unlock-btn hidden" id="btnSecretUnlock">open secret ♡</button>
+        </div>
+
+        <!-- "Your Worlds" Horizontal Scroll Feed -->
+        <div class="home-section-head">
+          <h3>Your Worlds</h3>
+          <span class="section-tag">20 songs</span>
+        </div>
+        <div class="home-worlds-scroll" id="homeWorldsScroll">
+          <!-- Populated dynamically by app.js -->
+        </div>
+
+        <!-- "Your Favorites" Section -->
+        <div class="home-section-head" style="margin-top: 1.5rem;">
+          <h3>Your Favorites ❤️</h3>
+          <span class="section-tag" id="favsCountTag">0 saved</span>
+        </div>
+        <div class="home-favs-container" id="homeFavsContainer">
+          <p class="empty-favs-msg">Tap the heart ♡ on any song to save your favorite little worlds here.</p>
+        </div>
+
+        <div style="height: 100px;"></div>
+      </div>
+    </div>
+
+    <!-- 7. PERSONAL NOTE MODAL ("♡ little note") -->
+    <div class="modal-backdrop" id="modalPersonalNote">
+      <div class="cute-note-card">
+        <div class="note-envelope-icon">💌</div>
+        <div class="note-song-title" id="noteSongTitle">Samjhawan</div>
+        <div class="note-world-badge" id="noteWorldBadge">✦ Amber Twilight ✦</div>
+        <div class="note-divider"></div>
+        <p class="note-body-text" id="noteBodyText">
+          This melody always feels like a warm cup of chai on a rainy evening. I hope it brings peace to your mind whenever things feel overwhelming ♡
+        </p>
+        <button class="cute-note-close-btn" id="closeNoteBtn">keep listening ♡</button>
+      </div>
+    </div>
+
+    <!-- 8. FINAL SECRET MODAL (20 / 20 UNLOCKED) -->
+    <div class="modal-backdrop" id="modalFinalSecret">
+      <div class="final-secret-card">
+        <div class="final-sparkles">✨ 💖 ✨</div>
+        <div class="final-pill">✦ 20 / 20 WORLDS UNLOCKED ✦</div>
+        <h2 class="final-title" id="finalSecretTitle">you found them all ♡</h2>
+        <div class="final-letter-box" id="finalLetterBox">
+          <p id="finalLetterText"></p>
+        </div>
+        <button class="cute-open-btn final-close-btn" id="closeFinalSecretBtn">
+          <span>forever & always ♡</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 9. CONSTELLATION WORLD MAP MODAL (THE LITTLE UNIVERSE) -->
+    <div class="world-map-modal" id="worldMapModal">
+      <div class="world-map-header">
+        <div class="modal-title-wrap">
+          <div class="modal-title">✦ The Little Universe ✦</div>
+          <span class="modal-tag">20 glowing stars</span>
+        </div>
+        <button class="modal-close-btn" id="closeWorldMapBtn" aria-label="Close">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="constellation-viewport" id="constellationViewport">
+        <svg class="constellation-svg" id="constellationSvg"></svg>
+        <div class="constellation-stars-container" id="constellationStars"></div>
+      </div>
+    </div>
+
+    <!-- 10. SECRET DIARY / JOURNAL MODAL (SAVED FOREVER) -->
+    <div class="modal-backdrop" id="modalDiary">
+      <div class="cute-diary-sheet">
+        <!-- Diary Top Header -->
+        <div class="diary-header">
+          <div class="diary-header-text">
+            <div class="diary-title-wrap">
+              <span class="diary-title-icon">📖</span>
+              <h2 class="diary-title">Dear Diary ♡</h2>
+            </div>
+            <p class="diary-subtitle">pen down whatever you're feeling · saved forever</p>
+          </div>
+          <button class="modal-close-btn" id="closeDiaryBtn" aria-label="Close Diary">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- Diary Navigation Tabs -->
+        <div class="diary-nav-tabs">
+          <button class="diary-tab-btn active" id="tabDiaryWrite">
+            <span>✍️ Write Thought</span>
+          </button>
+          <button class="diary-tab-btn" id="tabDiaryEntries">
+            <span>📖 Saved Memories</span>
+            <span class="diary-count-pill" id="diaryCountPill">0</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: Write Section -->
+        <div class="diary-view-section active" id="diaryWriteSection">
+          <!-- Date & Song Metadata Pill -->
+          <div class="diary-meta-bar">
+            <div class="diary-date-tag" id="diaryCurrentDate">📅 Sunday, Aug 16</div>
+            <div class="diary-song-tag" id="diaryCurrentSongTag">🎵 Samjhawan</div>
+          </div>
+
+          <!-- Mood Selector Pills -->
+          <div class="diary-mood-selector">
+            <span class="mood-label">Feeling:</span>
+            <div class="mood-pills-wrap" id="diaryMoodPills">
+              <button class="mood-pill active" data-mood="peaceful">♡ peaceful</button>
+              <button class="mood-pill" data-mood="happy">✨ happy</button>
+              <button class="mood-pill" data-mood="dreamy">🌙 dreamy</button>
+              <button class="mood-pill" data-mood="cozy">☕ cozy</button>
+              <button class="mood-pill" data-mood="nostalgic">🌧️ nostalgic</button>
+              <button class="mood-pill" data-mood="loved">💖 loved</button>
+            </div>
+          </div>
+
+          <!-- Notebook Textarea Container -->
+          <div class="diary-notebook-paper">
+            <textarea
+              class="diary-textarea"
+              id="diaryTextarea"
+              placeholder="Write down anything in your mind right now... A memory, a feeling, a little thought, or how this music makes you feel. It's completely private and saved forever ♡"
+              rows="6"
+            ></textarea>
+          </div>
+
+          <!-- Auto-save Status & Action Buttons -->
+          <div class="diary-bottom-actions">
+            <div class="diary-status-indicator" id="diaryStatusText">
+              <span class="status-dot"></span>
+              <span class="status-label">saved automatically ♡</span>
+            </div>
+
+            <div class="diary-btn-group">
+              <button class="diary-action-btn clear-btn" id="btnDiaryClear" title="Clear Draft">Clear</button>
+              <button class="diary-action-btn save-btn" id="btnDiarySave">
+                <span>Save Thought ♡</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Saved Entries List Section -->
+        <div class="diary-view-section" id="diaryEntriesSection">
+          <div class="diary-entries-list" id="diaryEntriesList">
+            <!-- Dynamically populated entries -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/songs-data.js"></script>
+  <script src="js/audio-engine.js"></script>
+  <script src="js/visualizer.js"></script>
+  <script src="js/transitions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
