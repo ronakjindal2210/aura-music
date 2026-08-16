@@ -4,6 +4,12 @@
  */
 
 :root {
+  /* Safe Area Insets for Mobile Notches & Bars */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+
   /* Cute Dreamy Pastel Palette */
   --color-pink-soft: #f472b6;
   --color-pink-light: #fbcfe8;

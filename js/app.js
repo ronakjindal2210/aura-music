@@ -162,7 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Constellation Coordinates optimized for permanently visible labels
-  const starCoords = [
+  // Constellation Coordinates: Desktop (2D Wide Space) vs Mobile (Staggered Vertical Space)
+  const starCoordsDesktop = [
     { x: 9, y: 38 },   // 1. Samjhawan
     { x: 22, y: 18 },  // 2. O Meri Laila
     { x: 35, y: 28 },  // 3. Aarzu
@@ -184,6 +185,35 @@ document.addEventListener('DOMContentLoaded', () => {
     { x: 93, y: 48 },  // 19. Wishes
     { x: 90, y: 84 }   // 20. Kashish
   ];
+
+  const starCoordsMobile = [
+    { x: 28, y: 6 },   // 1. Samjhawan
+    { x: 72, y: 11 },  // 2. O Meri Laila
+    { x: 26, y: 16 },  // 3. Aarzu
+    { x: 75, y: 21 },  // 4. Maskara
+    { x: 24, y: 26 },  // 5. Thinking of You
+    { x: 74, y: 31 },  // 6. Boyfriend
+    { x: 28, y: 36 },  // 7. Wavy
+    { x: 76, y: 41 },  // 8. For a Reason
+    { x: 25, y: 46 },  // 9. Afreen Afreen
+    { x: 72, y: 51 },  // 10. Arz Kia Hai
+    { x: 28, y: 56 },  // 11. Bulleya
+    { x: 75, y: 61 },  // 12. Tose Naina
+    { x: 25, y: 66 },  // 13. O Rangrez
+    { x: 72, y: 71 },  // 14. Darkhaast
+    { x: 28, y: 76 },  // 15. Tere Bina Na Guzara E
+    { x: 75, y: 81 },  // 16. Udaarian
+    { x: 26, y: 86 },  // 17. Ranjheya Ve
+    { x: 72, y: 90 },  // 18. Bairan
+    { x: 28, y: 94 },  // 19. Wishes
+    { x: 70, y: 97 }   // 20. Kashish
+  ];
+
+  function getActiveStarCoords() {
+    return (window.innerWidth < 680 || window.innerHeight > window.innerWidth) 
+      ? starCoordsMobile 
+      : starCoordsDesktop;
+  }
 
   // 1. LOAD & PLAYBACK ENGINE
   function loadSong(index, shouldPlay = false) {
@@ -616,16 +646,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function buildConstellationMap() {
     if (!els.constellationStars || !els.constellationSvg) return;
 
+    const currentCoords = getActiveStarCoords();
     els.constellationStars.innerHTML = '';
     els.constellationSvg.innerHTML = '';
 
     let svgLines = '';
-    for (let i = 0; i < starCoords.length; i++) {
-      for (let j = i + 1; j < starCoords.length; j++) {
-        const p1 = starCoords[i];
-        const p2 = starCoords[j];
+    const maxLinkDist = window.innerWidth < 680 ? 18 : 28;
+    for (let i = 0; i < currentCoords.length; i++) {
+      for (let j = i + 1; j < currentCoords.length; j++) {
+        const p1 = currentCoords[i];
+        const p2 = currentCoords[j];
         const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-        if (dist < 28) {
+        if (dist < maxLinkDist) {
           svgLines += `<line x1="${p1.x}%" y1="${p1.y}%" x2="${p2.x}%" y2="${p2.y}%" stroke="rgba(244, 114, 182, 0.3)" stroke-width="1.5" stroke-dasharray="3, 3" />`;
         }
       }
@@ -633,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
     els.constellationSvg.innerHTML = svgLines;
 
     SONGS_DATA.forEach((song, idx) => {
-      const pos = starCoords[idx] || { x: 50, y: 50 };
+      const pos = currentCoords[idx] || { x: 50, y: 50 };
       const node = document.createElement('div');
       node.className = `star-node ${idx === currentIndex ? 'active' : ''}`;
       node.style.left = `${pos.x}%`;
@@ -934,6 +966,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
     });
   }
+
+  // Window resize & orientation change handler
+  window.addEventListener('resize', () => {
+    buildConstellationMap();
+  });
+  window.addEventListener('orientationchange', () => {
+    setTimeout(buildConstellationMap, 200);
+  });
 
   // Initial Initialization
   initDiary();

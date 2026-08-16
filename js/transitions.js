@@ -11,8 +11,8 @@ class TransitionsManager {
     this.activeLayer = 'A';
     this.isTransitioning = false;
 
-    this.touchStartX = 0;
-    this.touchStartY = 0;
+    this.touchStartX = null;
+    this.touchStartY = null;
     this.touchStartTime = 0;
 
     this.initGestures();
@@ -25,10 +25,13 @@ class TransitionsManager {
     const currentLayer = this.activeLayer === 'A' ? this.layerA : this.layerB;
     const nextLayer = this.activeLayer === 'A' ? this.layerB : this.layerA;
 
-    const img = new Image();
-    img.src = song.image;
+    // Apply theme variables immediately
+    this.applyThemeVariables(song.theme);
 
-    img.onload = () => {
+    let isApplied = false;
+    const applyImage = () => {
+      if (isApplied) return;
+      isApplied = true;
       nextLayer.style.backgroundImage = `url('${song.image}')`;
       nextLayer.className = 'bg-layer incoming';
       currentLayer.className = 'bg-layer exiting';
@@ -37,9 +40,15 @@ class TransitionsManager {
 
       nextLayer.className = 'bg-layer active';
       this.activeLayer = this.activeLayer === 'A' ? 'B' : 'A';
-
-      this.applyThemeVariables(song.theme);
     };
+
+    const img = new Image();
+    img.onload = applyImage;
+    img.onerror = applyImage;
+    img.src = song.image;
+
+    // Fallback timer so mobile network hiccups never block transition
+    setTimeout(applyImage, 300);
   }
 
   applyThemeVariables(theme) {
@@ -53,33 +62,40 @@ class TransitionsManager {
   initGestures() {
     // Touch Navigation
     window.addEventListener('touchstart', (e) => {
-      if (e.target.closest('.home-drawer-content') || e.target.closest('.modal-backdrop') || e.target.closest('.world-map-modal')) return;
+      // Don't intercept swipe if touching inside any modal, drawer, or sheet
+      if (e.target.closest('.home-drawer') || 
+          e.target.closest('.modal-backdrop') || 
+          e.target.closest('.world-map-modal') ||
+          e.target.closest('.now-playing-sheet') ||
+          e.target.closest('.cute-diary-sheet')) {
+        this.touchStartX = null;
+        return;
+      }
       this.touchStartX = e.touches[0].clientX;
       this.touchStartY = e.touches[0].clientY;
       this.touchStartTime = Date.now();
     }, { passive: true });
 
     window.addEventListener('touchend', (e) => {
-      if (e.target.closest('.home-drawer-content') || e.target.closest('.modal-backdrop') || e.target.closest('.world-map-modal')) return;
+      if (this.touchStartX === null) return;
       
       const diffX = e.changedTouches[0].clientX - this.touchStartX;
       const diffY = e.changedTouches[0].clientY - this.touchStartY;
       const timeDiff = Date.now() - this.touchStartTime;
 
       // Handle swipe gestures
-      if (Math.abs(diffX) > 50 && Math.abs(diffY) < 60 && timeDiff < 600) {
-        // Horizontal swipe -> Song change
+      if (Math.abs(diffX) > 45 && Math.abs(diffY) < 55 && timeDiff < 600) {
         if (diffX < 0) {
           this.onAction('next');
         } else {
           this.onAction('prev');
         }
-      } else if (Math.abs(diffY) > 50 && Math.abs(diffX) < 60 && timeDiff < 600) {
-        // Vertical swipe -> Collapse now playing sheet on pull down
+      } else if (Math.abs(diffY) > 50 && Math.abs(diffX) < 50 && timeDiff < 600) {
         if (e.target.closest('.now-playing-sheet') && diffY > 50) {
           this.onAction('collapseNowPlaying');
         }
       }
+      this.touchStartX = null;
     }, { passive: true });
   }
 
