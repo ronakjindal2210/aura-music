@@ -1,6 +1,6 @@
 /**
  * AURA — Mobile Gestures & Transitions Controller
- * Smooth world crossfades, swipe navigation, and touch gestures.
+ * Instant zero-latency world crossfades, swipe navigation, asset preloading, and touch gestures.
  */
 
 class TransitionsManager {
@@ -11,12 +11,25 @@ class TransitionsManager {
     this.activeLayer = 'A';
     this.isTransitioning = false;
 
+    this.imageCache = new Map();
+
     this.touchStartX = null;
     this.touchStartY = null;
     this.touchStartTime = 0;
 
     this.initGestures();
     this.initKeyboard();
+  }
+
+  preloadAll(songs) {
+    if (!songs || !Array.isArray(songs)) return;
+    songs.forEach(song => {
+      if (song && song.image && !this.imageCache.has(song.image)) {
+        const img = new Image();
+        img.src = song.image;
+        this.imageCache.set(song.image, img);
+      }
+    });
   }
 
   transitionToWorld(song) {
@@ -28,27 +41,22 @@ class TransitionsManager {
     // Apply theme variables immediately
     this.applyThemeVariables(song.theme);
 
-    let isApplied = false;
-    const applyImage = () => {
-      if (isApplied) return;
-      isApplied = true;
-      nextLayer.style.backgroundImage = `url('${song.image}')`;
-      nextLayer.className = 'bg-layer incoming';
-      currentLayer.className = 'bg-layer exiting';
+    // Apply background image immediately without waiting
+    nextLayer.style.backgroundImage = `url('${song.image}')`;
+    nextLayer.className = 'bg-layer incoming';
+    currentLayer.className = 'bg-layer exiting';
 
-      void nextLayer.offsetWidth; // force reflow
+    void nextLayer.offsetWidth; // Force hardware GPU reflow
 
-      nextLayer.className = 'bg-layer active';
-      this.activeLayer = this.activeLayer === 'A' ? 'B' : 'A';
-    };
+    nextLayer.className = 'bg-layer active';
+    this.activeLayer = this.activeLayer === 'A' ? 'B' : 'A';
 
-    const img = new Image();
-    img.onload = applyImage;
-    img.onerror = applyImage;
-    img.src = song.image;
-
-    // Fallback timer so mobile network hiccups never block transition
-    setTimeout(applyImage, 300);
+    // Ensure image is in cache
+    if (!this.imageCache.has(song.image)) {
+      const img = new Image();
+      img.src = song.image;
+      this.imageCache.set(song.image, img);
+    }
   }
 
   applyThemeVariables(theme) {
@@ -84,7 +92,7 @@ class TransitionsManager {
       const timeDiff = Date.now() - this.touchStartTime;
 
       // Handle swipe gestures
-      if (Math.abs(diffX) > 45 && Math.abs(diffY) < 55 && timeDiff < 600) {
+      if (Math.abs(diffX) > 40 && Math.abs(diffY) < 60 && timeDiff < 600) {
         if (diffX < 0) {
           this.onAction('next');
         } else {

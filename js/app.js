@@ -976,6 +976,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initial Initialization
+  transitions.preloadAll(SONGS_DATA);
   initDiary();
   applyTonightMode();
   loadSong(!isNaN(savedLastSong) ? savedLastSong : 0, false);
