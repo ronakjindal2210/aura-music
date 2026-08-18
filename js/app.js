@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentIndex = index;
     const song = SONGS_DATA[currentIndex];
-
+    trackEvent("song_opened", song.title);
     // Track exploration progress
     exploredWorlds.add(song.id);
     localStorage.setItem('aura_explored_worlds', JSON.stringify(Array.from(exploredWorlds)));
@@ -271,12 +271,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function startPlayback() {
     isPlaying = true;
     const song = SONGS_DATA[currentIndex];
+    trackEvent("song_played", song.title);
     audio.playSong(song);
     updatePlayPauseUI();
   }
 
   function pausePlayback() {
     isPlaying = false;
+    trackEvent(
+    "song_paused",
+    SONGS_DATA[currentIndex].title
+  );
     audio.pause();
     updatePlayPauseUI();
   }
@@ -954,6 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 12. OPENING SCREEN TRIGGER
   if (els.btnOpenGift) {
     els.btnOpenGift.addEventListener('click', () => {
+      trackEvent("gift_opened");
       audio.ensureContext();
       if (els.introPortal) els.introPortal.classList.add('entered');
 
