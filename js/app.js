@@ -912,6 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (els.noteSongTitle) els.noteSongTitle.textContent = song.title;
     if (els.noteWorldBadge) els.noteWorldBadge.textContent = `✦ ${song.worldName} ✦`;
     if (els.noteBodyText) els.noteBodyText.textContent = song.note || "A special little song just for you ♡";
+    closeAllModals();
     if (els.modalPersonalNote) els.modalPersonalNote.classList.add('open');
   }
 
@@ -1353,18 +1354,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openDiaryModal() {
-    const song = SONGS_DATA[currentIndex];
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-    if (els.diaryCurrentDate) els.diaryCurrentDate.textContent = `📅 ${dateStr}`;
-    if (els.diaryCurrentSongTag) els.diaryCurrentSongTag.textContent = `🎵 ${song ? song.title : 'AURA'} (${song ? (song.badge || song.worldName) : ''})`;
-
-    if (els.diaryTextarea && diaryDraft) {
-      els.diaryTextarea.value = diaryDraft;
-    }
-    updateDiaryCount();
+    closeAllModals();
     renderDiaryEntries();
-    switchDiaryTab('write');
     if (els.modalDiary) els.modalDiary.classList.add('open');
   }
 
@@ -1394,10 +1385,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 18. MODAL HELPERS
   function closeAllModals() {
-    document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('open'));
-    if (els.worldMapModal) els.worldMapModal.classList.remove('open');
     if (els.homeDrawer) els.homeDrawer.classList.remove('open');
-    closeNowPlaying();
+    if (els.nowPlayingModal) els.nowPlayingModal.classList.remove('open');
+    if (els.worldMapModal) els.worldMapModal.classList.remove('open');
+    if (els.modalDiary) els.modalDiary.classList.remove('open');
+    if (els.modalYourAura) els.modalYourAura.classList.remove('open');
+    if (els.modalPersonalNote) els.modalPersonalNote.classList.remove('open');
+    if (els.modalFinalSecret) els.modalFinalSecret.classList.remove('open');
   }
 
   document.querySelectorAll('.modal-backdrop').forEach(backdrop => {

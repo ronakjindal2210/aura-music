@@ -1,9 +1,16 @@
 /* ==========================================================================
    AURA — Living Music World Sanctuaries
-   Clean, Unified, High-Performance Mobile & Desktop Stylesheet
+   Master High-Performance Stylesheet (Flawless Desktop & Mobile Interactive Edition)
    ========================================================================== */
 
-/* 1. ROOT & FULL VIEWPORT CONTAINERS */
+/* 1. ROOT & VIEWPORT BASICS */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -12,7 +19,7 @@ html, body {
   padding: 0;
   overflow: hidden;
   background-color: #06040d;
-  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -44,7 +51,6 @@ html, body {
   z-index: 1;
   overflow: hidden;
   background-color: #06040d;
-  transform: translateZ(0);
 }
 
 .bg-layer {
@@ -61,7 +67,6 @@ html, body {
   transition: opacity 0.8s ease-in-out;
   opacity: 0;
   pointer-events: none;
-  transform: translateZ(0);
   will-change: opacity;
 }
 
@@ -168,7 +173,7 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   pointer-events: none;
 }
 
-/* 3. WARM, DREAMY & CUTE OPENING PORTAL */
+/* 3. WARM, DREAMY OPENING PORTAL */
 .intro-portal {
   position: fixed;
   top: 0;
@@ -187,7 +192,7 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   text-align: center;
   padding: 1.5rem;
   overflow: hidden;
-  transition: opacity 0.8s var(--ease-cinematic, ease), transform 0.8s var(--ease-cinematic, ease);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .intro-portal.entered {
@@ -224,7 +229,7 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   z-index: 10;
   max-width: 420px;
   width: 90%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -670,7 +675,6 @@ body.atmosphere-late-night .time-atmosphere-overlay {
 .mini-btn.fav-btn.active {
   color: #f43f5e;
 }
-
 .mini-btn.fav-btn.active svg {
   fill: #f43f5e;
 }
@@ -1092,7 +1096,7 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   border: none;
   outline: none;
   color: #ffffff;
-  font-family: var(--font-sans);
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   font-size: 0.88rem;
 }
 
@@ -1200,18 +1204,21 @@ body.atmosphere-late-night .time-atmosphere-overlay {
 }
 
 /* Home Section Titles */
-.home-section-title {
-  font-family: var(--font-cute, 'Quicksand', sans-serif);
-  font-size: 1rem;
-  font-weight: 700;
-  color: #ffffff;
+.home-section-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.7rem;
 }
 
-.count-pill {
+.home-section-head h3 {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.section-tag {
   font-size: 0.72rem;
   font-weight: 700;
   background: rgba(255, 255, 255, 0.1);
@@ -1297,12 +1304,9 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   text-overflow: ellipsis;
 }
 
-/* 9. MODALS: CONSTELLATION, DIARY, YOUR AURA */
-.world-map-modal,
-.modal-diary,
-.modal-your-aura,
-.modal-personal-note,
-.modal-final-secret {
+/* 9. ALL MODALS: CONSTELLATION, DIARY, YOUR AURA, NOTE, SECRET */
+.modal-backdrop,
+.world-map-modal {
   position: fixed;
   inset: 0;
   z-index: 140;
@@ -1314,51 +1318,110 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
   padding: 1rem;
 }
 
-.world-map-modal.open,
-.modal-diary.open,
-.modal-your-aura.open,
-.modal-personal-note.open,
-.modal-final-secret.open {
-  opacity: 1;
-  pointer-events: auto;
+.modal-backdrop.open,
+.world-map-modal.open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
-.world-map-content,
+/* Modal Inner Cards */
+.cute-note-card,
+.final-secret-card,
 .cute-diary-sheet,
-.cute-aura-card,
-.modal-card {
+.cute-aura-card {
   background: rgba(16, 12, 32, 0.97);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 28px;
   width: 100%;
-  max-width: 520px;
-  max-height: 90vh;
-  max-height: 90dvh;
+  max-width: 500px;
+  max-height: calc(90dvh - var(--sat) - var(--sab));
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
-  padding: 1.5rem;
+  padding: 1.6rem 1.4rem;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s ease;
 }
 
-/* Constellation Map Content */
-.world-map-modal.open .world-map-content {
+.modal-backdrop.open .cute-note-card,
+.modal-backdrop.open .final-secret-card,
+.modal-backdrop.open .cute-diary-sheet,
+.modal-backdrop.open .cute-aura-card {
+  transform: translateY(0) scale(1);
+}
+
+/* CONSTELLATION MAP MODAL */
+.world-map-modal {
+  flex-direction: column;
+  padding: calc(0.75rem + var(--sat)) 1rem calc(1rem + var(--sab)) 1rem;
+}
+
+.world-map-header {
+  width: 100%;
   max-width: 900px;
-  height: 85vh;
-  height: 85dvh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  flex-shrink: 0;
+}
+
+.modal-title-wrap {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+}
+
+.modal-title {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.modal-tag {
+  font-size: 0.75rem;
+  color: var(--color-peach, #fed7aa);
+}
+
+.map-progress-indicator {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-peach, #fed7aa);
+  background: rgba(251, 146, 60, 0.15);
+  border: 1px solid rgba(251, 146, 60, 0.3);
+  padding: 0.25rem 0.8rem;
+  border-radius: 100px;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .constellation-viewport {
   position: relative;
-  flex: 1;
   width: 100%;
+  max-width: 900px;
+  flex: 1;
   height: 100%;
+  min-height: 380px;
+  background: radial-gradient(circle at center, rgba(30, 20, 55, 0.5) 0%, rgba(10, 6, 20, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
   overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
 }
 
 .constellation-svg {
@@ -1369,7 +1432,7 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   pointer-events: none;
 }
 
-.constellation-stars-layer {
+.constellation-stars-container {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1384,37 +1447,467 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   align-items: center;
   cursor: pointer;
   z-index: 10;
+  transition: transform 0.2s ease;
 }
 
 .star-core {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 0 12px var(--star-glow, #f472b6);
-  transition: transform 0.2s ease;
+  box-shadow: 0 0 10px var(--star-glow, #f472b6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.star-node:hover,
+.star-node.active {
+  transform: translate(-50%, -50%) scale(1.35);
+  z-index: 20;
 }
 
 .star-node:hover .star-core,
 .star-node.active .star-core {
-  transform: scale(1.4);
-  box-shadow: 0 0 20px var(--star-glow, #f472b6);
+  box-shadow: 0 0 18px #ffffff, 0 0 28px var(--star-glow, #f472b6);
+}
+
+.star-node.unexplored .star-core {
+  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .star-label-above {
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 6, 20, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 2px 7px;
+  padding: 1.5px 7px;
   border-radius: 100px;
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
   font-size: 0.68rem;
   font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
   margin-top: 4px;
+  pointer-events: none;
 }
 
-/* Secret Milestone Toast Notification */
+/* PERSONAL NOTE MODAL */
+.cute-note-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-envelope-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.note-song-title {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.note-world-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-peach, #fed7aa);
+  margin-top: 2px;
+}
+
+.note-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--accent-primary, #f472b6);
+  border-radius: 2px;
+  margin: 0.9rem 0;
+  opacity: 0.6;
+}
+
+.note-body-text {
+  font-family: var(--font-hand, 'Caveat', cursive);
+  font-size: 1.4rem;
+  line-height: 1.45;
+  color: var(--color-pink-light, #fbcfe8);
+  margin-bottom: 1.4rem;
+}
+
+.cute-note-close-btn {
+  background: linear-gradient(135deg, #f472b6 0%, #fb923c 100%);
+  border: none;
+  color: #ffffff;
+  padding: 0.75rem 2rem;
+  border-radius: 100px;
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(244, 114, 182, 0.4);
+}
+
+/* SECRET DIARY MODAL */
+.diary-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.diary-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.diary-title {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.diary-subtitle {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+.diary-nav-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px;
+  border-radius: 100px;
+}
+
+.diary-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.4rem 0.75rem;
+  border-radius: 100px;
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.diary-tab-btn.active {
+  background: var(--accent-primary, #f472b6);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(244, 114, 182, 0.4);
+}
+
+.diary-view-section {
+  display: none;
+}
+
+.diary-view-section.active {
+  display: block;
+}
+
+.diary-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  color: var(--color-peach, #fed7aa);
+  margin-bottom: 0.7rem;
+}
+
+.diary-mood-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.mood-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mood-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.mood-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mood-pill.active {
+  background: var(--color-pink-soft, #f472b6);
+  border-color: var(--color-pink-soft, #f472b6);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(244, 114, 182, 0.4);
+}
+
+.diary-notebook-paper {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 0.75rem 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.diary-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--font-hand, 'Caveat', cursive);
+  font-size: 1.3rem;
+  line-height: 1.45;
+  resize: vertical;
+  min-height: 110px;
+}
+
+.diary-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.diary-bottom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.diary-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+.diary-btn-group {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.diary-action-btn {
+  padding: 0.4rem 0.95rem;
+  border-radius: 100px;
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.diary-action-btn.clear-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.diary-action-btn.save-btn {
+  background: linear-gradient(135deg, #f472b6 0%, #c084fc 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(244, 114, 182, 0.4);
+}
+
+.diary-entry-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.65rem;
+}
+
+.dec-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--color-peach, #fed7aa);
+  margin-bottom: 0.35rem;
+}
+
+.dec-text {
+  font-family: var(--font-hand, 'Caveat', cursive);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+/* YOUR AURA PROFILE MODAL */
+.cute-aura-card {
+  text-align: center;
+}
+
+.aura-card-header {
+  position: relative;
+  margin-bottom: 0.8rem;
+}
+
+.aura-profile-close {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.aura-profile-pill {
+  display: inline-block;
+  background: rgba(244, 114, 182, 0.15);
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  padding: 0.25rem 0.85rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent-primary, #f472b6);
+  margin-bottom: 0.5rem;
+}
+
+.aura-archetype-title {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.aura-archetype-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1.1rem;
+  line-height: 1.35;
+}
+
+.aura-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.aura-stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.7rem 0.8rem;
+}
+
+.aura-stat-box.full-width {
+  grid-column: span 2;
+}
+
+.as-icon {
+  font-size: 1.05rem;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.as-value {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.as-label {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.aura-keep-exploring-btn {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+/* FINAL SECRET MODAL */
+.final-secret-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.final-sparkles {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.final-pill {
+  display: inline-block;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  padding: 0.25rem 0.85rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #fbbf24;
+  margin-bottom: 0.6rem;
+}
+
+.final-title {
+  font-family: var(--font-cute, 'Quicksand', sans-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+}
+
+.final-letter-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.final-letter-box p {
+  font-family: var(--font-hand, 'Caveat', cursive);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--color-pink-light, #fbcfe8);
+  white-space: pre-line;
+}
+
+.final-close-btn {
+  margin-bottom: 0;
+}
+
+/* SECRET MILESTONE TOAST */
 .secret-milestone-toast {
   position: fixed;
   top: calc(1rem + var(--sat));
@@ -1439,6 +1932,23 @@ body.atmosphere-late-night .time-atmosphere-overlay {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
   pointer-events: auto;
+}
+
+.smt-icon {
+  font-size: 1.2rem;
+  color: #fbbf24;
+}
+
+.smt-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fbbf24;
+}
+
+.smt-sub {
+  font-size: 0.85rem;
+  color: #ffffff;
 }
 
 /* 10. RESPONSIVE MOBILE ADAPTATIONS (< 768px) */
