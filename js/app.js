@@ -1,3 +1,10 @@
+
+  // Instant Mobile Audio Unlock & Touch Gesture Listener
+  window.addEventListener('touchstart', function unlockAudioOnFirstTouch() {
+    audio.ensureContext();
+    window.removeEventListener('touchstart', unlockAudioOnFirstTouch);
+  }, { passive: true });
+
 /**
  * AURA — Main Application Controller (36 Worlds Sanctuary Edition)
  * Living Constellation, Today's Universe, Little Companion, Time Atmosphere & YOUR AURA Profile
@@ -812,6 +819,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (els.miniFavBtn) els.miniFavBtn.addEventListener('click', toggleFavorite);
   if (els.sheetFavBtn) els.sheetFavBtn.addEventListener('click', toggleFavorite);
+
+  
+  // Mobile Touch Swipe Navigation (Left/Right swipe to change worlds)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+
+  const stage = document.getElementById('worldCenterStage');
+  if (stage) {
+    stage.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  function handleSwipe() {
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    // Require at least 50px horizontal swipe and mostly horizontal direction
+    if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+      if (diffX < 0) {
+        playNext(); // Swiped left -> Next world
+      } else {
+        playPrev(); // Swiped right -> Previous world
+      }
+    }
+  }
 
   // 10. NOW PLAYING SHEET CONTROLS
   function openNowPlaying() {
