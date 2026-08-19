@@ -6,6 +6,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>AURA — Aesthetic Music Worlds</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,7 +39,7 @@
       </div>
 
       <h1 class="cute-brand-title">AURA</h1>
-      <p class="cute-gift-tagline">20 little worlds made from 20 songs</p>
+      <p class="cute-gift-tagline" id="introTagline">36 little worlds made from 36 songs</p>
 
       <div class="cute-sound-pulse">
         <span></span><span></span><span></span><span></span><span></span>
@@ -63,6 +64,9 @@
       <div class="bg-layer incoming" id="bgLayerB"></div>
       <div class="atmosphere-vignette"></div>
 
+      <!-- Time-based atmosphere overlay tint -->
+      <div class="time-atmosphere-overlay" id="timeAtmosphereOverlay"></div>
+
       <!-- Subtle Screen Overlays -->
       <div class="screen-fx-layer fx-grain active" id="fxGrain"></div>
       <div class="screen-fx-layer fx-vignette active" id="fxVignette"></div>
@@ -84,6 +88,11 @@
       </div>
 
       <div class="top-bar-right">
+        <button class="top-action-btn aura-btn" id="btnOpenAuraTop" title="Your Aura Listening Profile">
+          <span class="icon">🌙</span>
+          <span class="label">Your Aura</span>
+        </button>
+
         <button class="top-action-btn diary-btn" id="btnOpenDiary" title="Open Secret Diary">
           <span class="icon">📖</span>
           <span class="label">Diary</span>
@@ -104,8 +113,56 @@
       </div>
     </header>
 
-    <!-- 3. IMMERSIVE LIVING WORLD VIEW -->
-    <main class="world-center-stage" id="worldCenterStage" aria-label="Living World Stage"></main>
+    <!-- 3. IMMERSIVE LIVING WORLD VIEW & COMPANION -->
+    <main class="world-center-stage" id="worldCenterStage" aria-label="Living World Stage">
+      <!-- Interactive Little Character Companion -->
+      <div class="aura-companion-wrapper" id="auraCompanionWrapper" title="Your little companion ♡ Tap to make him dance!">
+        <div class="companion-bubble" id="companionBubble">listening with you ♡</div>
+        <div class="aura-companion" id="auraCompanion">
+          <!-- Animated Companion SVG Structure (Large 300% Size) -->
+          <svg class="companion-svg" viewBox="0 0 100 100" width="100%" height="100%">
+            <!-- Glow Aura -->
+            <circle class="comp-glow" cx="50" cy="50" r="44" fill="var(--accent-glow, rgba(244,114,182,0.45))" />
+            <!-- Shadow -->
+            <ellipse class="comp-shadow" cx="50" cy="90" rx="32" ry="7" fill="rgba(0,0,0,0.38)" />
+            <!-- Floating Sparkle Notes -->
+            <g class="comp-sparkles-group">
+              <text class="comp-sparkle-note note-1" x="8" y="30" font-size="14" fill="#fbbf24">♪</text>
+              <text class="comp-sparkle-note note-2" x="78" y="24" font-size="16" fill="#f472b6">✨</text>
+              <text class="comp-sparkle-note note-3" x="84" y="65" font-size="13" fill="#38bdf8">♫</text>
+              <text class="comp-sparkle-note note-4" x="4" y="70" font-size="12" fill="#fbcfe8">♡</text>
+            </g>
+            <!-- Body Group -->
+            <g class="comp-body-group" id="compBodyGroup">
+              <!-- Left & Right Arms -->
+              <ellipse class="comp-arm left" cx="20" cy="57" rx="7" ry="13" fill="#ffffff" />
+              <ellipse class="comp-arm right" cx="80" cy="57" rx="7" ry="13" fill="#ffffff" />
+              <!-- Torso / Head -->
+              <ellipse class="comp-body" cx="50" cy="54" rx="32" ry="29" fill="#ffffff" />
+              <!-- Cheeks -->
+              <circle class="comp-cheek left" cx="33" cy="58" r="6" fill="#f472b6" opacity="0.75" />
+              <circle class="comp-cheek right" cx="67" cy="58" r="6" fill="#f472b6" opacity="0.75" />
+              <!-- Eyes Normal -->
+              <g class="comp-eyes comp-eyes-normal" id="compEyesNormal">
+                <circle class="comp-eye left" cx="38" cy="49" r="4.2" fill="#1e1b4b" />
+                <circle class="comp-eye right" cx="62" cy="49" r="4.2" fill="#1e1b4b" />
+                <circle cx="39.8" cy="47.2" r="1.6" fill="#ffffff" />
+                <circle cx="63.8" cy="47.2" r="1.6" fill="#ffffff" />
+              </g>
+              <!-- Eyes Happy (Crescents) -->
+              <g class="comp-eyes comp-eyes-happy" id="compEyesHappy">
+                <path d="M 33 50 Q 38 42 43 50" stroke="#1e1b4b" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+                <path d="M 57 50 Q 62 42 67 50" stroke="#1e1b4b" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+              </g>
+              <!-- Happy Smile -->
+              <path class="comp-mouth" id="compMouth" d="M 44 57 Q 50 64 56 57" stroke="#1e1b4b" stroke-width="2.8" stroke-linecap="round" fill="none" />
+              <!-- Star Crown -->
+              <polygon class="comp-head-star" points="50,14 53,24 63,24 55,30 58,40 50,34 42,40 45,30 37,24 47,24" fill="#fbbf24" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </main>
 
     <!-- Edge Navigation Arrows (Desktop / Tablet) -->
     <button class="edge-nav prev" id="edgePrev" title="Previous World (←)" aria-label="Previous World">
@@ -220,6 +277,10 @@
 
         <!-- Bottom Sheet Extras -->
         <div class="sheet-footer-tools">
+          <button class="sheet-tool-pill" id="btnAuraSheet">
+            <span class="icon">🌙</span>
+            <span>Your Aura</span>
+          </button>
           <button class="sheet-tool-pill" id="btnDiarySheet">
             <span class="icon">📖</span>
             <span>My Diary</span>
@@ -244,11 +305,34 @@
         <div class="home-header">
           <div>
             <h2 class="home-greeting" id="homeGreeting">Good evening ♡</h2>
-            <p class="home-subtitle">I made you something.</p>
+            <p class="home-subtitle" id="homeSubtitle">I made you something.</p>
           </div>
           <button class="home-close-btn" id="closeHomeBtn" aria-label="Close Home">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
+        </div>
+
+        <!-- TODAY'S UNIVERSE DAILY RECOMMENDATION HERO CARD -->
+        <div class="today-universe-card" id="todayUniverseCard">
+          <div class="tu-glow-accent"></div>
+          <div class="tu-header-tag">
+            <span class="tu-sparkle">✦</span>
+            <span id="tuGreetingTag">Today's Universe ✨</span>
+          </div>
+          <div class="tu-body">
+            <div class="tu-thumb-wrap">
+              <img src="assets/images/world_01.jpg" id="tuThumb" alt="Today's Universe" />
+              <div class="tu-badge-overlay" id="tuBadge">Himalayan Twilight</div>
+            </div>
+            <div class="tu-info">
+              <div class="tu-prompt-text" id="tuPromptText">"Your universe has something waiting for you."</div>
+              <h4 class="tu-song-title" id="tuSongTitle">Samjhawan</h4>
+              <p class="tu-song-artist" id="tuSongArtist">Arijit Singh & Shreya Ghoshal</p>
+              <button class="tu-enter-btn" id="btnEnterTodayUniverse">
+                <span>enter world ✨</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- Continue Listening Card (if available) -->
@@ -265,7 +349,22 @@
         </div>
 
         <!-- Quick Action Grid -->
+        
+        <!-- Quick World Search Bar -->
+        <div class="home-search-bar-wrap">
+          <span class="hsb-icon">🔍</span>
+          <input type="text" class="home-search-input" id="homeSearchInput" placeholder="Search 36 worlds (e.g. Ve Haniya, Dilliwali, Raabta...)" autocomplete="off" />
+          <button class="hsb-clear-btn" id="hsbClearBtn" style="display:none;">✕</button>
+        </div>
+
         <div class="home-quick-actions">
+          <div class="quick-action-card aura-profile-card" id="btnQuickAura">
+            <div class="card-glow-circle"></div>
+            <span class="qa-icon">🌙</span>
+            <div class="qa-title">Your Aura</div>
+            <div class="qa-desc" id="qaAuraDesc">listening identity</div>
+          </div>
+
           <div class="quick-action-card diary-card" id="btnQuickDiary">
             <span class="qa-icon">📖</span>
             <div class="qa-title">Secret Diary</div>
@@ -276,7 +375,7 @@
             <div class="card-glow-circle"></div>
             <span class="qa-icon">✨</span>
             <div class="qa-title">The Little Universe</div>
-            <div class="qa-desc">20 glowing stars</div>
+            <div class="qa-desc"><span id="universeStarCount">36</span> glowing stars</div>
           </div>
 
           <div class="quick-action-card surprise-card" id="btnQuickSurprise">
@@ -297,8 +396,8 @@
           <div class="progress-left">
             <span class="progress-icon">🌌</span>
             <div>
-              <div class="progress-text"><span id="exploredCount">1</span> / 20 Worlds Explored</div>
-              <div class="progress-sub" id="progressSub">listen to all 20 to unlock something special ♡</div>
+              <div class="progress-text"><span id="exploredCount">1</span> / <span id="totalWorldsCount">36</span> Worlds Explored</div>
+              <div class="progress-sub" id="progressSub">listen to all 36 to unlock something special ♡</div>
             </div>
           </div>
           <button class="secret-unlock-btn hidden" id="btnSecretUnlock">open secret ♡</button>
@@ -307,7 +406,7 @@
         <!-- "Your Worlds" Horizontal Scroll Feed -->
         <div class="home-section-head">
           <h3>Your Worlds</h3>
-          <span class="section-tag">20 songs</span>
+          <span class="section-tag" id="allWorldsCountTag">36 songs</span>
         </div>
         <div class="home-worlds-scroll" id="homeWorldsScroll">
           <!-- Populated dynamically by app.js -->
@@ -340,11 +439,11 @@
       </div>
     </div>
 
-    <!-- 8. FINAL SECRET MODAL (20 / 20 UNLOCKED) -->
+    <!-- 8. FINAL SECRET MODAL (36 / 36 UNLOCKED) -->
     <div class="modal-backdrop" id="modalFinalSecret">
       <div class="final-secret-card">
         <div class="final-sparkles">✨ 💖 ✨</div>
-        <div class="final-pill">✦ 20 / 20 WORLDS UNLOCKED ✦</div>
+        <div class="final-pill">✦ 36 / 36 WORLDS UNLOCKED ✦</div>
         <h2 class="final-title" id="finalSecretTitle">you found them all ♡</h2>
         <div class="final-letter-box" id="finalLetterBox">
           <p id="finalLetterText"></p>
@@ -360,7 +459,10 @@
       <div class="world-map-header">
         <div class="modal-title-wrap">
           <div class="modal-title">✦ The Little Universe ✦</div>
-          <span class="modal-tag">20 glowing stars</span>
+          <span class="modal-tag" id="mapTagWorlds">36 glowing stars</span>
+        </div>
+        <div class="map-progress-indicator" id="mapProgressIndicator">
+          <span id="mapExploredCount">1</span> / <span id="mapTotalCount">36</span> explored
         </div>
         <button class="modal-close-btn" id="closeWorldMapBtn" aria-label="Close">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -455,6 +557,83 @@
           </div>
         </div>
 
+      </div>
+    </div>
+
+    <!-- 11. YOUR AURA PERSONAL LISTENING PROFILE MODAL -->
+    <div class="modal-backdrop" id="modalYourAura">
+      <div class="cute-aura-card">
+        <div class="aura-card-header">
+          <div class="aura-profile-pill">✦ YOUR AURA PROFILE ✦</div>
+          <h2 class="aura-archetype-title" id="auraArchetypeTitle">🌙 Midnight Dreamer</h2>
+          <p class="aura-archetype-desc" id="auraArchetypeDesc">You find peace when the world goes quiet under starlight.</p>
+          <button class="modal-close-btn aura-profile-close" id="closeAuraProfileBtn" aria-label="Close Profile">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="aura-stats-grid">
+          <div class="aura-stat-box">
+            <span class="as-icon">🎧</span>
+            <div class="as-value" id="auraStatExplored">1 / 36</div>
+            <div class="as-label">Worlds Explored</div>
+          </div>
+
+          <div class="aura-stat-box">
+            <span class="as-icon">💗</span>
+            <div class="as-value" id="auraStatFavs">0</div>
+            <div class="as-label">Favorites Saved</div>
+          </div>
+
+          <div class="aura-stat-box">
+            <span class="as-icon">🌧️</span>
+            <div class="as-value" id="auraStatMood">Soulful</div>
+            <div class="as-label">Most Visited Mood</div>
+          </div>
+
+          <div class="aura-stat-box">
+            <span class="as-icon">🕐</span>
+            <div class="as-value" id="auraStatFavTime">11:00 PM</div>
+            <div class="as-label">Peak Listening Time</div>
+          </div>
+
+          <div class="aura-stat-box full-width">
+            <span class="as-icon">🎵</span>
+            <div class="as-value" id="auraStatTopWorld">Himalayan Twilight</div>
+            <div class="as-label">Most Visited Sanctuary</div>
+          </div>
+
+          <div class="aura-stat-box full-width">
+            <span class="as-icon">📖</span>
+            <div class="as-value" id="auraStatDiaryCount">0 memories penned</div>
+            <div class="as-label">Thoughts in Your Diary</div>
+          </div>
+        </div>
+
+        <div class="aura-card-footer">
+          <button class="cute-open-btn aura-keep-exploring-btn" id="closeAuraProfileBtnBottom">
+            <span>continue journey ♡</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. CINEMATIC SURPRISE ME TRANSITION OVERLAY -->
+    <div class="surprise-transition-overlay" id="surpriseTransitionOverlay">
+      <div class="surprise-content">
+        <div class="surprise-orb-pulse"></div>
+        <div class="surprise-stars-twinkle">✨ 🌌 ✨</div>
+        <h2 class="surprise-title">Finding a world for you...</h2>
+        <p class="surprise-sub">tuning the cosmos to your aura</p>
+      </div>
+    </div>
+
+    <!-- 13. SECRET MILESTONE UNLOCK TOAST NOTIFICATION -->
+    <div class="secret-milestone-toast" id="secretMilestoneToast">
+      <span class="smt-icon" id="smtIcon">✦</span>
+      <div class="smt-text">
+        <div class="smt-title" id="smtTitle">Something new appeared...</div>
+        <div class="smt-sub" id="smtSub">Starlight Sanctuary Unlocked</div>
       </div>
     </div>
 

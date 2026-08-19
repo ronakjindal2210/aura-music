@@ -1,954 +1,1298 @@
 /**
- * AURA — 20 Aesthetic Music Worlds Dataset
- * Personalized Music Gift Edition
+ * AURA — 36 Living World Sanctuaries (100% Exact Aligned Edition)
  */
-
-const FINAL_MESSAGE = {
-  title: "you found them all ♡",
-  subtitle: "20 / 20 little worlds unlocked",
-  badge: "✦ secret unlocked ✦",
-  letter: `Hey you,
-
-If you are reading this, it means you took the time to explore every single little world and listen to every melody.
-
-I created this little corner of the internet just for you — a cozy sanctuary you can always come back to whenever you want to unwind, escape the noise of the world, or just listen to beautiful music under the stars.
-
-Every song in here has a little piece of warmth meant to make your day softer and brighter. Thank you for listening, and thank you for being you.
-
-Forever your biggest fan ♡`
-};
 
 const SONGS_DATA = [
   {
-    id: 1,
-    title: "Samjhawan",
-    artist: "Arijit Singh & Shreya Ghoshal",
-    album: "Humpty Sharma Ki Dulhania",
-    worldName: "Himalayan Twilight Valley",
-    mood: "Soulful & Melancholic",
-    badge: "Amber Twilight",
-    tagPhrase: "made for you",
-    note: "This melody always feels like a warm cup of chai on a rainy evening. I hope it brings peace to your mind whenever things feel overwhelming ♡",
-    image: "assets/images/world_01.jpg",
-    audioSrc: "assets/audio/track_01.mp3",
-    quote: "Main tenu samjhawan ki, na tere bina lagda jee...",
-    translation: "How do I make you understand, my heart finds no peace without you...",
-    lore: "Resting beside a serene alpine lake tucked between mist-laden Himalayan peaks, where the evening dusk washes the pine trees in liquid amber gold.",
-    theme: {
-      primary: "#f59e0b",
-      accent: "#fbbf24",
-      bgGradient: "linear-gradient(135deg, #1c140e 0%, #2e1a0d 50%, #0a0e17 100%)",
-      glowColor: "rgba(245, 158, 11, 0.45)"
+    "id": 1,
+    "title": "Samjhawan",
+    "artist": "Arijit Singh & Shreya Ghoshal",
+    "album": "Humpty Sharma Ki Dulhania",
+    "worldName": "Himalayan Twilight Valley",
+    "mood": "Soulful & Melancholic",
+    "badge": "Amber Twilight",
+    "tagPhrase": "warm & peaceful",
+    "note": "This melody always feels like a warm cup of chai on a rainy evening. I hope it brings peace to your mind whenever things feel overwhelming ♡",
+    "image": "assets/images/world_01.jpg",
+    "audioSrc": "assets/audio/track_01.mp3",
+    "audioMatch": "Samjhawan",
+    "quote": "Main tenu samjhawan ki, na tere bina lagda jee...",
+    "translation": "How do I make you understand? My soul finds no peace without you...",
+    "lore": "A quiet, misty Himalayan valley where warm amber lantern lights flicker softly against cold blue mountain twilight.",
+    "theme": {
+      "primary": "#f59e0b",
+      "accent": "#f472b6",
+      "bgGradient": "linear-gradient(135deg, #1f140e 0%, #2e1d14 50%, #151828 100%)",
+      "glowColor": "rgba(245, 158, 11, 0.45)"
     },
-    audio: {
-      ambientType: "wind_pine"
+    "audio": {
+      "ambientType": "wind"
     },
-    lyrics: [
-      "✦ Instrumental Acoustic Intro ✦",
-      "Nahi jeena tere baajon, nahi jeena...",
-      "Main tenu samjhawan ki",
-      "Na tere bina lagda jee",
-      "Tu ki jaane pyar mera",
-      "Main karaan intezar tera",
-      "Tu dil tui-yon jaan meri",
-      "Jaan meri... jaan meri...",
-      "✦ Sitar & Flute Interlude ✦",
-      "Mere dil vich rehan waleye",
-      "Kyun door gaye khwaab sajaye",
-      "Dillan de sode kade hunde nahi",
-      "Dillan de nate kade mukkde nahi",
-      "Ve maahi ve maahi ve...",
-      "Akhaan cho neer vage",
-      "Tere bin na saah chalde",
-      "Main tenu samjhawan ki",
-      "Na tere bina lagda jee",
-      "Tu dil tui-yon jaan meri",
-      "Jaan meri... jaan meri...",
-      "✦ Violin & Piano Melodies ✦",
-      "Kade aa mil sajjna ve",
-      "Tenu khol ke dassiye dil da haal",
-      "Muk gaye sab dukhde mere",
-      "Jadon hove tu mere naal",
-      "Main karaan intezar tera",
-      "Main tenu samjhawan ki",
-      "Na tere bina lagda jee",
-      "Tu dil tui-yon jaan meri",
-      "Jaan meri... jaan meri...",
-      "✦ Fade Out & Mountain Breeze ✦"
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Mountain Flute & Twilight Strings ✦",
+      "Nahi jeena tere baaju, nahi jeena, nahi jeena",
+      "Main tenu samjhawan ki, na tere bina lagda jee",
+      "Tu ki jaane pyaar mera, main karaan intezaar tera",
+      "Tu dil, tu-yun jaan meri",
+      "✦ Sarangi & Acoustic Guitar ✦",
+      "Mere dil vich rehke mere dil da haal na jaane",
+      "Tere baajon koi vi mera dard pachhan na paave",
+      "Ve maahi mera tu hi ae, sahara mera tu hi ae",
+      "Main tenu samjhawan ki, na tere bina lagda jee...",
+      "✦ Soft Twilight Rain Outro ✦"
     ]
   },
   {
-    id: 2,
-    title: "O Meri Laila",
-    artist: "Jyotica Tangri & Atif Aslam",
-    album: "Laila Majnu",
-    worldName: "Oasis of Thousand Lanterns",
-    mood: "Mystical & Passionate",
-    badge: "Desert Mirage",
-    tagPhrase: "for late nights",
-    note: "This song has so much soul. Play this when the night gets quiet and you want to drift into a dreamland full of stars ♡",
-    image: "assets/images/world_02.jpg",
-    audioSrc: "assets/audio/track_02.mp3",
-    quote: "O meri Laila, khwab tu hai pehla...",
-    translation: "O my beloved Laila, you are the first dream my soul ever dreamed...",
-    lore: "Endless golden sand dunes illuminated by brass lanterns under a celestial violet milky way, whispering timeless desert legends across the starlit oasis.",
-    theme: {
-      primary: "#c084fc",
-      accent: "#f59e0b",
-      bgGradient: "linear-gradient(135deg, #1c0f2b 0%, #2a1138 50%, #15091f 100%)",
-      glowColor: "rgba(192, 132, 252, 0.45)"
+    "id": 2,
+    "title": "O Meri Laila",
+    "artist": "Jyotica Tangri & Atif Aslam",
+    "album": "Laila Majnu",
+    "worldName": "Oasis of Thousand Lanterns",
+    "mood": "Passionate & Ethereal",
+    "badge": "Lustrous Oasis",
+    "tagPhrase": "glowing & dreamy",
+    "note": "Listen to the violins swell here. It feels like floating through a starry desert under glowing purple dunes ♡",
+    "image": "assets/images/world_02.jpg",
+    "audioSrc": "assets/audio/track_02.mp3",
+    "audioMatch": "O Meri Laila",
+    "quote": "O meri Laila, khwaab tu pehla...",
+    "translation": "O my Laila, you are my first and eternal dream...",
+    "lore": "An ethereal desert sanctuary surrounded by floating glowing lanterns and whispering wind.",
+    "theme": {
+      "primary": "#c084fc",
+      "accent": "#fbbf24",
+      "bgGradient": "linear-gradient(135deg, #1c0f2a 0%, #2e1545 50%, #1a1528 100%)",
+      "glowColor": "rgba(192, 132, 252, 0.45)"
     },
-    audio: {
-      ambientType: "desert_breeze"
+    "audio": {
+      "ambientType": "night"
     },
-    lyrics: [
-      "✦ Mystical Rubab & Oud Intro ✦",
-      "O meri Laila, khwab tu hai pehla",
-      "Kaisa yeh khumar tera, kaisa nasha",
-      "Teri aankhon ke darya mein kho gaya",
-      "Main toh tera deewana ho gaya",
-      "Poocho na haal mera, kya se kya ho gaya",
-      "O meri Laila... o meri Laila...",
-      "✦ Desert Mirage Strings ✦",
-      "Tu meri rooh ki pyas hai",
-      "Har pal tu mere paas hai",
-      "Yeh ishq nahi aasan bas itna samajh lijiye",
-      "Ik aag ka darya hai aur doob ke jaana hai",
-      "O meri Laila, khwab tu hai pehla",
-      "Kaisa yeh khumar tera, kaisa nasha",
-      "✦ Passionate Orchestral Bridge ✦",
-      "Sufi jigar se nikli dua tu",
-      "Mera jahaan hai, mera khuda tu",
-      "Tere bina main adhoora sa lafz hoon",
-      "Poocho na haal mera, kya se kya ho gaya",
-      "O meri Laila... o meri Laila...",
-      "Main toh tera deewana ho gaya",
-      "O meri Laila, khwab tu hai pehla...",
-      "✦ Starlit Oasis Echoes ✦"
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Ethereal Desert Echoes ✦",
+      "O meri Laila, khwaab tu pehla",
+      "Floating beneath the violet desert night",
+      "Thousand lanterns burning golden and bright",
+      "Tere bina koi aalam nahi",
+      "Tu hi toh meri manzil hai",
+      "✦ Floating Lantern Swell ✦",
+      "O meri Laila, laila ho meri laila...",
+      "✦ Soft Wind & Starlight Outro ✦"
     ]
   },
   {
-    id: 3,
-    title: "Aarzu",
-    artist: "Asim Azhar, Noor, Khan & Madhurxo",
-    album: "Aarzu - Single",
-    worldName: "Cherry Blossom Dusk Courtyard",
-    mood: "Ethereal & Dreamy",
-    badge: "Sakura Glow",
-    tagPhrase: "just because",
-    note: "Soft and gentle, just like spring petals falling. Whenever you listen to this, remember how special you truly are ♡",
-    image: "assets/images/world_03.jpg",
-    audioSrc: "assets/audio/track_03.mp3",
-    quote: "Tere bina lagta nahi mera jiya, kyun bhala...",
-    translation: "Without you, my restless soul wanders in solitary stillness...",
-    lore: "A tranquil dusk tea courtyard surrounded by blooming cherry blossoms and glowing stone lanterns, where gentle pink petals float upon still koi waters.",
-    theme: {
-      primary: "#f472b6",
-      accent: "#fbcfe8",
-      bgGradient: "linear-gradient(135deg, #27101f 0%, #3b182d 50%, #120e1b 100%)",
-      glowColor: "rgba(244, 114, 182, 0.45)"
+    "id": 3,
+    "title": "Aarzu",
+    "artist": "Asim Azhar, Noor Khan & Madhurxo",
+    "album": "Aarzu - Single",
+    "worldName": "Cherry Blossom Dusk Garden",
+    "mood": "Soft & Nostalgic",
+    "badge": "Petal Reverie",
+    "tagPhrase": "gentle breeze",
+    "note": "Soft pink cherry blossoms swirling in the evening air. Whenever you listen to this, take a deep breath and relax ♡",
+    "image": "assets/images/world_03.jpg",
+    "audioSrc": "assets/audio/track_03.mp3",
+    "audioMatch": "Aarzu",
+    "quote": "Yeh aarzu meri, tu ho rubaroo...",
+    "translation": "This one deep yearning of my heart: just to have you here before my eyes...",
+    "lore": "A tranquil Japanese courtyard under a lavender dusk sky, filled with falling sakura petals and soft candlelight.",
+    "theme": {
+      "primary": "#f472b6",
+      "accent": "#a78bfa",
+      "bgGradient": "linear-gradient(135deg, #240d1a 0%, #3d152c 50%, #1c152e 100%)",
+      "glowColor": "rgba(244, 114, 182, 0.45)"
     },
-    audio: {
-      ambientType: "zen_water"
+    "audio": {
+      "ambientType": "nature"
     },
-    lyrics: [
-      "✦ Gentle Acoustic Guitar Intro ✦",
-      "Tere bina lagta nahi mera jiya, kyun bhala",
-      "Aarzu hai bas teri, tu hi meri dastaan",
-      "Kyun faasle darmiyaan hain yahan",
-      "Aa bhi jaa tu mere sang yahan",
-      "Raahon mein bikhre hain khwab mere",
-      "Dhoonde tujhe yeh nigahein meri",
-      "Aarzu hai bas teri, aarzu hai bas teri...",
-      "✦ Cherry Blossom Melody Interlude ✦",
-      "Shaam dhal rahi hai teri yaad mein",
-      "Khamosh baitha hoon fariyad mein",
-      "Kash tu laut aaye iss mod par",
-      "Chhod ke na jaana tanha tod kar",
-      "Tere bina lagta nahi mera jiya",
-      "Aarzu hai bas teri, tu hi meri dastaan",
-      "Aarzu hai bas teri... aarzu hai bas teri...",
-      "Aa bhi jaa tu mere sang yahan...",
-      "✦ Soft Koi Ripple Outro ✦"
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Soft Piano & Falling Blossoms ✦",
+      "Yeh aarzu meri, tu ho rubaroo",
+      "Sakura petals drifting in the breeze",
+      "Whispering melodies through the trees",
+      "Tere siva kuch bhi na chaha",
+      "Yeh aarzu meri... tu ho rubaroo...",
+      "✦ Lavender Dusk Rain Echoes ✦"
     ]
   },
   {
-    id: 4,
-    title: "Maskara",
-    artist: "A.R. Rahman, Vedang Raina & Nilanjana",
-    album: "Main Vaapas Aaunga",
-    worldName: "Punjab Golden Hour",
-    mood: "Warm & Nostalgic",
-    badge: "Punjab Pind",
-    tagPhrase: "keep this one ♡",
-    note: "The golden warmth of a village sunset, sarson fields, and nostalgic folk beats. It’s got that cozy, happy energy you deserve every single day ♡",
-    image: "assets/images/world_04.jpg",
-    audioSrc: "assets/audio/track_04.mp3",
-    quote: "Akhaan vich paaya mascara jachda, dil tere naal ve main jod rakheya...",
-    translation: "Golden sunset illuminates the blooming mustard fields, while the warmth of village love resonates across the courtyard...",
-    lore: "A picturesque traditional Punjabi pind at golden twilight dusk, surrounded by lush blooming mustard fields, rustic brick courtyards, vibrant swirling phulkari dupattas, and warm harmonium melodies echoing across the sunset.",
-    theme: {
-      primary: "#f59e0b",
-      accent: "#f43f5e",
-      bgGradient: "linear-gradient(135deg, #2b180d 0%, #3e2210 50%, #20101b 100%)",
-      glowColor: "rgba(245, 158, 11, 0.55)"
+    "id": 4,
+    "title": "Maskara",
+    "artist": "A.R. Rahman, Vedang Raina & Nilanjana",
+    "album": "Main Vaapas Aaunga",
+    "worldName": "Punjab Golden Hour Horizon",
+    "mood": "Warm & Reflective",
+    "badge": "Golden Saffron",
+    "tagPhrase": "warm & nostalgic",
+    "note": "The golden warmth of fields at sundown. A reminder that you bring so much warmth to the world around you ♡",
+    "image": "assets/images/world_04.jpg",
+    "audioSrc": "assets/audio/track_04.mp3",
+    "audioMatch": "Maskara",
+    "quote": "Khol aankhein zara, dekh le tu sama...",
+    "translation": "Open your eyes and behold this breathtaking moment...",
+    "lore": "Endless golden fields bathed in the rich, soothing rays of an autumn sunset.",
+    "theme": {
+      "primary": "#ea580c",
+      "accent": "#facc15",
+      "bgGradient": "linear-gradient(135deg, #261108 0%, #421e0a 50%, #211910 100%)",
+      "glowColor": "rgba(234, 88, 12, 0.45)"
     },
-    audio: {
-      ambientType: "sunset_harmonium"
+    "audio": {
+      "ambientType": "wind"
     },
-    lyrics: [
-      "✦ Folk Harmonium & Tumbi Alaap ✦",
-      "Akhaan vich paaya mascara jachda",
-      "Dil tere naal ve main jod rakheya",
-      "Golden sunbeams dancing on the mustard fields",
-      "Every heartbeat whispers what the spirit feels",
-      "Tere bina chain nahi aunda ve",
-      "Har pal tera chehra sataunda ve",
-      "Maskara tera kamaal lagda",
-      "Dil mera behaal lagda...",
-      "✦ Saffron Sunset Flute & Dholak Groove ✦",
-      "Village twilight glowing warm and bright",
-      "You and I dancing in the golden light",
-      "Pind diyan galiyan vich tera hi naad hai",
-      "Har ik saah vich teri hi yaad hai",
-      "Akhaan vich paaya mascara jachda",
-      "Dil tere naal ve main jod rakheya",
-      "Maskara tera kamaal lagda...",
-      "Har pal tera chehra sataunda ve...",
-      "✦ Evening Dusk & Harmonium Fade ✦"
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Golden Hour Acoustic Intro ✦",
+      "Khol aankhein zara, dekh le tu sama",
+      "Sunlight fading into shades of gold",
+      "Stories waiting to be told",
+      "Maskara tere naina da...",
+      "✦ Saffron Sunset Guitar Echoes ✦"
     ]
   },
   {
-    id: 5,
-    title: "Thinking of You",
-    artist: "AP Dhillon",
-    album: "Live Performance",
-    worldName: "Sunset Shoreline Solitude",
-    mood: "Nostalgic & Reflective",
-    badge: "Golden Sunset Shore",
-    tagPhrase: "our little song",
-    note: "Watching the tide roll in under an amber sky. Whenever you hear this, know someone is thinking of you with the biggest smile ♡",
-    image: "assets/images/world_05.jpg",
-    audioSrc: "assets/audio/track_05.mp3",
-    quote: "Thinking of you every minute that goes by...",
-    translation: "Sitting quietly by the ocean tide as memories reflect like liquid gold across the waves...",
-    lore: "Sitting quietly by the rolling ocean tide as the sun dips below the horizon, bathed in amber gold and twilight reflections across the endless waves.",
-    theme: {
-      primary: "#f59e0b",
-      accent: "#fdba74",
-      bgGradient: "linear-gradient(135deg, #2b180d 0%, #3d2112 50%, #151d2c 100%)",
-      glowColor: "rgba(245, 158, 11, 0.45)"
+    "id": 5,
+    "title": "Thinking of You",
+    "artist": "AP Dhillon",
+    "album": "Thinking of You",
+    "worldName": "Neon Coastal Shoreline",
+    "mood": "Late-Night & Introspective",
+    "badge": "Tidal Luminescence",
+    "tagPhrase": "3:00 am thoughts",
+    "note": "For those quiet late nights when you are staring out the window with headphones on. You're never alone ♡",
+    "image": "assets/images/world_05.jpg",
+    "audioSrc": "assets/audio/track_05.mp3",
+    "audioMatch": "Thinking Of You",
+    "quote": "I've been thinking about you late night under city lights...",
+    "translation": "Lost in quiet thoughts of you as the coastline glows beneath the night...",
+    "lore": "A deserted coastline where neon reflections shimmer across wet sand and rhythmic tides.",
+    "theme": {
+      "primary": "#38bdf8",
+      "accent": "#ec4899",
+      "bgGradient": "linear-gradient(135deg, #0a1926 0%, #0e2a42 50%, #201124 100%)",
+      "glowColor": "rgba(56, 189, 248, 0.45)"
     },
-    audio: {
-      ambientType: "ocean_breeze"
+    "audio": {
+      "ambientType": "ocean"
     },
-    lyrics: [
-      "✦ Sunset Ocean Keys Intro ✦",
-      "Thinking of you every minute that goes by",
-      "Watching the ocean tide meet the twilight sky",
-      "Memories drift like gold upon the sea",
-      "Wishing that you were right here with me",
-      "Late night drives under the city lights",
-      "Remembering those unforgettable nights",
-      "Girl you know you're always on my mind",
-      "A love like yours is hard to find...",
-      "✦ Guitar Chords & Waves ✦",
-      "Waves keep crashing against the shore",
-      "Missing you now more than ever before",
-      "Golden reflections across the sand",
-      "Holding memories inside my hand",
-      "Thinking of you every minute that goes by",
-      "Wishing that you were right here with me...",
-      "✦ Amber Dusk Fade ✦"
+    "companionMood": "late_night",
+    "lyrics": [
+      "✦ Late Night Synth Waves ✦",
+      "I've been thinking of you late night",
+      "Watching waves beneath the neon light",
+      "Tere baare sochan har ghadi",
+      "Kalli raat vich yaadan di ladi...",
+      "✦ Ocean Tide & Synth Outro ✦"
     ]
   },
   {
-    id: 6,
-    title: "Boyfriend",
-    artist: "Karan Aujla ft. Sunanda Sharma",
-    album: "Boyfriend - Single (Prod. Ikky)",
-    worldName: "Miami Art-Deco Sunset Terrace",
-    mood: "Playful & Vibrant",
-    badge: "Coastal Sunset",
-    tagPhrase: "made to make you smile",
-    note: "Pure upbeat sunset drive vibes! Play this with the windows down and sing along as loud as you want ♡",
-    image: "assets/images/world_06.jpg",
-    audioSrc: "assets/audio/track_06.mp3",
-    quote: "Karan Aujla & Sunanda vibe on a summer evening drive...",
-    translation: "Warm evening ocean breeze, palm shadows, and carefree coastal sunset memories...",
-    lore: "An elegant Art-Deco oceanfront terrace bathed in coral sunset tones, looking out upon the turquoise Caribbean tide and swaying palm fronds.",
-    theme: {
-      primary: "#fb923c",
-      accent: "#2dd4bf",
-      bgGradient: "linear-gradient(135deg, #291811 0%, #381f14 50%, #0d2826 100%)",
-      glowColor: "rgba(251, 146, 60, 0.45)"
+    "id": 6,
+    "title": "Boyfriend",
+    "artist": "Karan Aujla ft. Sunanda Sharma",
+    "album": "Boyfriend - Single",
+    "worldName": "Miami Art-Deco Sunset Boulevard",
+    "mood": "Chic & Playful",
+    "badge": "Deco Velvet",
+    "tagPhrase": "stylish & sassy",
+    "note": "Upbeat, stylish, and full of confidence! Whenever you need a little burst of joy, play this on full blast ♡",
+    "image": "assets/images/world_06.jpg",
+    "audioSrc": "assets/audio/track_06.mp3",
+    "audioMatch": "BOYFRIEND",
+    "quote": "Kudi kehndi mainu boyfriend bana lai apna...",
+    "translation": "She playfully says: make me your one and only...",
+    "lore": "Pastel art-deco streets with swaying palm trees under an electric pink-orange sunset.",
+    "theme": {
+      "primary": "#f43f5e",
+      "accent": "#06b6d4",
+      "bgGradient": "linear-gradient(135deg, #240a12 0%, #3e1220 50%, #0d212b 100%)",
+      "glowColor": "rgba(244, 63, 94, 0.45)"
     },
-    audio: {
-      ambientType: "ocean_breeze"
+    "audio": {
+      "ambientType": "wind"
     },
-    lyrics: [
-      "✦ Ikky Tropical Bass Intro ✦",
-      "Karan Aujla on the beat, Ikky vibe",
-      "Gaddi vich baith ke cruise karde",
-      "Coastal sunset glowing in your eyes",
-      "No more drama, no goodbyes",
-      "Tu meri queen, main tera king soniye",
-      "Duniya nu bhul ke tu nach soniye",
-      "Ocean breeze blowing through your hair",
-      "Vibe check passed, nothing can compare...",
-      "✦ Coral Art-Deco Beat Drop ✦",
-      "Boyfriend tera poora hit balliye",
-      "Style sadda har thaan lit balliye",
-      "Gaddi vich baith ke cruise karde",
-      "Coastal sunset glowing in your eyes",
-      "Boyfriend tera poora hit balliye...",
-      "✦ Miami Sunset Fade Out ✦"
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ Palm Trees & 808 Groove ✦",
+      "Kudi kehndi mainu boyfriend bana lai apna",
+      "Cruising down the sunset boulevard",
+      "Neon lights glowing bright in our yard",
+      "✦ Energetic Punjabi Drop ✦"
     ]
   },
   {
-    id: 7,
-    title: "Wavy",
-    artist: "Karan Aujla",
-    album: "Wavy (Prod. Ikky)",
-    worldName: "Bioluminescent Abyssal Deep",
-    mood: "Electric & Mesmerizing",
-    badge: "Ocean Luminescence",
-    tagPhrase: "for midnight drives",
-    note: "Submerged deep underwater where everything glows electric cyan. Put on your headphones and let the bass take over ♡",
-    image: "assets/images/world_07.jpg",
-    audioSrc: "assets/audio/track_07.mp3",
-    quote: "Vibe meri wavy ae, look poori crazy ae...",
-    translation: "Riding effortless waves through neon currents beneath the midnight tide...",
-    lore: "Submerged deep into the oceanic abyss where glowing bioluminescent jellyfish pulse softly beside vibrant radiant coral sanctuaries.",
-    theme: {
-      primary: "#38bdf8",
-      accent: "#818cf8",
-      bgGradient: "linear-gradient(135deg, #07192f 0%, #0c2b4e 50%, #051329 100%)",
-      glowColor: "rgba(56, 189, 248, 0.5)"
+    "id": 7,
+    "title": "Wavy",
+    "artist": "Karan Aujla",
+    "album": "Four Me - EP",
+    "worldName": "Bioluminescent Crystal Abyss",
+    "mood": "Hypnotic & Wavy",
+    "badge": "Cyan Glow",
+    "tagPhrase": "flow with the vibe",
+    "note": "Hypnotic underwater neon crystals and deep bass. Just close your eyes and let the rhythm carry you ♡",
+    "image": "assets/images/world_07.jpg",
+    "audioSrc": "assets/audio/track_07.mp3",
+    "audioMatch": "WAVY",
+    "quote": "Everything is wavy when you ride the rhythm...",
+    "translation": "Surrendering to the hypnotic pulse of the deep...",
+    "lore": "A deep bioluminescent underwater world with glowing neon corals and crystal formations.",
+    "theme": {
+      "primary": "#06b6d4",
+      "accent": "#a855f7",
+      "bgGradient": "linear-gradient(135deg, #081d24 0%, #0d2f3b 50%, #20122e 100%)",
+      "glowColor": "rgba(6, 182, 212, 0.45)"
     },
-    audio: {
-      ambientType: "deep_water"
+    "audio": {
+      "ambientType": "cosmic"
     },
-    lyrics: [
-      "✦ Deep Aqua Sub-Bass Intro ✦",
-      "Vibe meri wavy ae, look poori crazy ae",
-      "Gaddi meri low, cruise karde slow",
-      "Neon glowing under the midnight flow",
-      "Drip poori tight, everything feels right",
-      "Riding effortless waves through the deep",
-      "Promises we make and promises we keep",
-      "Abyssal glow shining bright in the dark",
-      "Setting the night ablaze with a spark...",
-      "✦ Bioluminescent Wave Groove ✦",
-      "Wavy look, wavy flow",
-      "Everywhere we go, we put on a show",
-      "Vibe meri wavy ae, look poori crazy ae",
-      "Gaddi meri low, cruise karde slow...",
-      "✦ Ocean Abyss Echo ✦"
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Submerged Crystal Bassline ✦",
+      "Everything is wavy in the deep neon blue",
+      "Floating through the current with you",
+      "Rhythm flowing like the ocean tide",
+      "✦ Deep Aquatic Outro ✦"
     ]
   },
   {
-    id: 8,
-    title: "For a Reason",
-    artist: "Karan Aujla ft. Tania",
-    album: "For A Reason (Prod. Ikky)",
-    worldName: "Golden Sunflower Fields",
-    mood: "Uplifting & Warm",
-    badge: "Sunflower Glow",
-    tagPhrase: "always remember",
-    note: "Everything really does happen for a reason. Better days, brighter sunsets, and so much happiness ahead of you ♡",
-    image: "assets/images/world_08.jpg",
-    audioSrc: "assets/audio/track_08.mp3",
-    quote: "Everything that happens, happens for a reason...",
-    translation: "Every moment that passes, every turning season carries its own divine destiny...",
-    lore: "Vast blooming sunflower fields basking in the golden sunbeams, radiating warmth, positivity, and the quiet assurance that everything aligns in time.",
-    theme: {
-      primary: "#eab308",
-      accent: "#facc15",
-      bgGradient: "linear-gradient(135deg, #281f08 0%, #3f310d 50%, #182315 100%)",
-      glowColor: "rgba(234, 179, 8, 0.45)"
+    "id": 8,
+    "title": "For a Reason",
+    "artist": "Karan Aujla ft. Tania",
+    "album": "Four Me - EP",
+    "worldName": "Sunflower Highlands at Sunrise",
+    "mood": "Uplifting & Bright",
+    "badge": "Morning Rays",
+    "tagPhrase": "everything happens for a reason",
+    "note": "Sunflowers turning towards the morning sun. Never forget that everything works out in the end ♡",
+    "image": "assets/images/world_08.jpg",
+    "audioSrc": "assets/audio/track_08.mp3",
+    "audioMatch": "For A Reason",
+    "quote": "Everything happened for a reason, trust the journey...",
+    "translation": "Every moment unfolds with divine purpose...",
+    "lore": "Vast green highlands blooming with sunflowers as the golden morning sun breaks over the mountain ridge.",
+    "theme": {
+      "primary": "#facc15",
+      "accent": "#22c55e",
+      "bgGradient": "linear-gradient(135deg, #24200a 0%, #3b3310 50%, #0d2415 100%)",
+      "glowColor": "rgba(250, 204, 21, 0.45)"
     },
-    audio: {
-      ambientType: "meadow_wind"
+    "audio": {
+      "ambientType": "nature"
     },
-    lyrics: [
-      "✦ Golden Acoustic Intro ✦",
-      "Everything that happens, happens for a reason",
-      "Golden sunflowers dancing through the season",
-      "Waqt de naal sab theek ho janda",
-      "Dil da dard vi mit janda",
-      "Sunbeams breaking through the morning sky",
-      "No more tears left in the eye",
-      "Trust the journey, let it unfold",
-      "Every silver lining turns to gold...",
-      "✦ Meadow Sunflower Strings ✦",
-      "Rab te bharosa rakh tu soniye",
-      "Zindagi haseen ban jau soniye",
-      "Har ik mod te umeed da deep jale",
-      "Jadon tu mere naal naal chale",
-      "Everything that happens, happens for a reason",
-      "Every silver lining turns to gold...",
-      "✦ Golden Horizon Breeze ✦"
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Acoustic Morning Strum ✦",
+      "Everything happens for a reason in this life",
+      "Sunflowers blooming after the storm and strife",
+      "Trust the journey, trust the sun...",
+      "✦ Golden Sunbeam Outro ✦"
     ]
   },
   {
-    id: 9,
-    title: "Afreen Afreen",
-    artist: "Rahat Fateh Ali Khan & Momina Mustehsan",
-    album: "Coke Studio Season 9",
-    worldName: "Royal Mughal Starlight Pavilion",
-    mood: "Classical & Sublime",
-    badge: "Celestial Pearl",
-    tagPhrase: "pure magic",
-    note: "A masterpiece of divine poetry and silver moonbeams. This one is as timeless as your charm ♡",
-    image: "assets/images/world_09.jpg",
-    audioSrc: "assets/audio/track_09.mp3",
-    quote: "Husn-e-jaana ki tareef mumkin nahi, afreen afreen...",
-    translation: "Praise of such celestial beauty defies all words; praised be the divine grace...",
-    lore: "A majestic ivory marble pavilion overlooking mirror-still starlit fountains under the silver glow of a crescent moon in ancient Agra.",
-    theme: {
-      primary: "#e2e8f0",
-      accent: "#fbbf24",
-      bgGradient: "linear-gradient(135deg, #131722 0%, #202738 50%, #181d29 100%)",
-      glowColor: "rgba(226, 232, 240, 0.4)"
+    "id": 9,
+    "title": "Afreen Afreen",
+    "artist": "Rahat Fateh Ali Khan & Momina Mustehsan",
+    "album": "Coke Studio Season 9",
+    "worldName": "Royal Mughal Starlight Pavilion",
+    "mood": "Timeless & Divine",
+    "badge": "Celestial Ivory",
+    "tagPhrase": "pure grace",
+    "note": "A timeless masterpiece. Starlight reflecting off marble arches with the sweetest harmonium notes ♡",
+    "image": "assets/images/world_09.jpg",
+    "audioSrc": "assets/audio/track_09.mp3",
+    "audioMatch": "Afreen Afreen",
+    "quote": "Husn-e-jaana ki taareef mumkin nahi...",
+    "translation": "Words fail to describe the radiant, heavenly beauty of the beloved...",
+    "lore": "A pristine white marble Mughal courtyard under a midnight sky sparkling with constellations.",
+    "theme": {
+      "primary": "#fbbf24",
+      "accent": "#f472b6",
+      "bgGradient": "linear-gradient(135deg, #241a0e 0%, #3b2b15 50%, #2b1120 100%)",
+      "glowColor": "rgba(251, 191, 36, 0.45)"
     },
-    audio: {
-      ambientType: "fountain_night"
+    "audio": {
+      "ambientType": "night"
     },
-    lyrics: [
-      "✦ Traditional Harmonium & Tabla Alaap ✦",
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Starlight Harmonium Alaap ✦",
       "Aisa dekha nahi khoobsurat koi",
-      "Jism jaise ajanta ki murat koi",
-      "Jism jaise nigaahon pe jaadu koi",
-      "Jism naghma koi, jism khushbu koi",
-      "Husn-e-jaana ki tareef mumkin nahi",
+      "Jism jaise ajanta ki moorat koi",
+      "Husn-e-jaana ki taareef mumkin nahi",
       "Afreen afreen, afreen afreen...",
-      "Tu bhi dekhe agar toh kahe humnasheen",
-      "Afreen afreen, afreen afreen...",
-      "✦ Momina & Rahat Vocal Jugalbandi ✦",
-      "Chehra ik phool ki tarah shadaab hai",
-      "Chehra uska hai ya koi mahtab hai",
-      "Aankhon mein nasha jaise sharab hai",
-      "Husn-e-jaana ki tareef mumkin nahi",
-      "Afreen afreen, afreen afreen...",
-      "✦ Qawwali Claps & Rhythmic Swells ✦",
-      "Jaane kaisi bandagi hai, jaane kaisa noor hai",
-      "Dekh ke chehra tera dil maghroor hai",
-      "Roshni roshni har taraf ho gayi",
-      "Zindagi ishq mein gumshuda ho gayi",
-      "Husn-e-jaana ki tareef mumkin nahi",
-      "Afreen afreen, afreen afreen...",
-      "Tu bhi dekhe agar toh kahe humnasheen...",
-      "✦ Celestial Pavilion Starlight Fade ✦"
+      "✦ Celestial Tabla & Vocals Swell ✦",
+      "Chehra ik phool ki tarah shaadaab hai",
+      "Afreen afreen... afreen afreen...",
+      "✦ Marble Pavilion Echoes ✦"
     ]
   },
   {
-    id: 10,
-    title: "Arz Kia Hai",
-    artist: "Anuv Jain X Lost Stories",
-    album: "Coke Studio Bharat",
-    worldName: "Warm Acoustic Studio",
-    mood: "Intimate & Soulful",
-    badge: "Studio Sessions",
-    tagPhrase: "cozy corner",
-    note: "Warm amber lamps, vintage microphones, and acoustic guitar strings. A cozy musical hug for you ♡",
-    image: "assets/images/world_10.jpg",
-    audioSrc: "assets/audio/track_10.mp3",
-    quote: "Arz kiya hai... dil ke panne pe sirf tera hi zikr hai...",
-    translation: "I present before you... upon every page of my heart, only your story is written...",
-    lore: "Surrounded by vintage ribbon microphones, acoustic guitars, analog dials, and warm mood lighting in a cozy recording studio sanctuary.",
-    theme: {
-      primary: "#d97706",
-      accent: "#fbbf24",
-      bgGradient: "linear-gradient(135deg, #261608 0%, #3a220c 50%, #16101c 100%)",
-      glowColor: "rgba(217, 119, 6, 0.45)"
+    "id": 10,
+    "title": "Arz Kia Hai",
+    "artist": "Anuv Jain X Lost Stories",
+    "album": "Coke Studio Bharat",
+    "worldName": "Acoustic Wooden Studio",
+    "mood": "Intimate & Cozy",
+    "badge": "Amber Velvet",
+    "tagPhrase": "quiet memories",
+    "note": "Warm fairy lights and acoustic strings. Like sitting in a cozy room while rain gently taps the windowpane ♡",
+    "image": "assets/images/world_10.jpg",
+    "audioSrc": "assets/audio/track_10.mp3",
+    "audioMatch": "Arz Kiya Hai",
+    "quote": "Arz kiya hai, tere husn ke qaseede...",
+    "translation": "I offer these humble verses, devoted entirely to your gentle grace...",
+    "lore": "A warm rustic wood cabin filled with fairy lights, vintage guitars, and amber candlelight.",
+    "theme": {
+      "primary": "#f59e0b",
+      "accent": "#e11d48",
+      "bgGradient": "linear-gradient(135deg, #24170d 0%, #3d2414 50%, #260a12 100%)",
+      "glowColor": "rgba(245, 158, 11, 0.45)"
     },
-    audio: {
-      ambientType: "vinyl_crackle"
+    "audio": {
+      "ambientType": "wind"
     },
-    lyrics: [
-      "✦ Cozy Studio Guitar Fingerpicking ✦",
-      "Arz kiya hai... dil ke panne pe sirf tera hi zikr hai",
-      "Dheemi si aanch pe pighalta yeh fikar hai",
-      "Acoustic strings whispering in the quiet room",
-      "Your sweet fragrance cuts through the gloom",
-      "Kash tu yahan mere paas baithi hoti",
-      "Har baat pe muskurati, roti",
-      "Yeh dastaan bas teri aur meri hai",
-      "Raat bachi thodi, baat batheri hai...",
-      "✦ Lost Stories Atmospheric Beat ✦",
-      "Arz kiya hai, sun toh zara",
-      "Dil ne jo kaha, samajh toh zara",
-      "Khwaabon ki chhat pe taare gine hain",
-      "Tere hi rangon se dhaage bune hain",
-      "Arz kiya hai... dil ke panne pe sirf tera hi zikr hai",
-      "Dheemi si aanch pe pighalta yeh fikar hai",
-      "Yeh dastaan bas teri aur meri hai...",
-      "Raat bachi thodi, baat batheri hai...",
-      "Arz kiya hai... sun toh zara...",
-      "✦ Vintage Vinyl Crackle Outro ✦"
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Warm Acoustic Picking ✦",
+      "Arz kiya hai tere naam se shuru",
+      "Quiet rain tapping on the windowpane",
+      "Washing away all the sorrow and pain",
+      "✦ Cozy Studio Harmonies ✦"
     ]
   },
   {
-    id: 11,
-    title: "Bulleya",
-    artist: "Papon",
-    album: "Sultan (Vishal & Shekhar)",
-    worldName: "Sufi Ruins Under Cosmic Trails",
-    mood: "Spiritual & Majestic",
-    badge: "Cosmic Sufi",
-    tagPhrase: "soulful & free",
-    note: "Campfire embers turning under a sky full of shooting star trails. When you need that burst of spiritual energy ♡",
-    image: "assets/images/world_11.jpg",
-    audioSrc: "assets/audio/track_11.mp3",
-    quote: "Kaisi yeh lagan tu laga gaya hai, rasta yeh naya dikha gaya hai...",
-    translation: "What divine devotion have you ignited, showing me an uncharted sacred path...",
-    lore: "Ancient terracotta ruins in the heart of the desert where whirling cosmic star trails turn around a roaring sanctuary campfire under infinite skies.",
-    theme: {
-      primary: "#ea580c",
-      accent: "#38bdf8",
-      bgGradient: "linear-gradient(135deg, #2b1208 0%, #431b0c 50%, #0d1e33 100%)",
-      glowColor: "rgba(234, 88, 12, 0.45)"
+    "id": 11,
+    "title": "Bulleya",
+    "artist": "Papon",
+    "album": "Sultan",
+    "worldName": "Sufi Starlit Desert Shrine",
+    "mood": "Mystic & Yearning",
+    "badge": "Mystic Saffron",
+    "tagPhrase": "seeking truth",
+    "note": "The soul-stirring depth of Sufi poetry. May you always find peace and clarity on your journey ♡",
+    "image": "assets/images/world_11.jpg",
+    "audioSrc": "assets/audio/track_11.mp3",
+    "audioMatch": "Bulleya",
+    "quote": "Kuch rishton ka namak hi doori hota hai...",
+    "translation": "Some sacred bonds find their true reverence in silence and distance...",
+    "lore": "An ancient desert shrine glowing under an infinite starry sky with swirling mystical sand trails.",
+    "theme": {
+      "primary": "#ea580c",
+      "accent": "#facc15",
+      "bgGradient": "linear-gradient(135deg, #261108 0%, #421e0a 50%, #211910 100%)",
+      "glowColor": "rgba(234, 88, 12, 0.45)"
     },
-    audio: {
-      ambientType: "campfire_sparks"
+    "audio": {
+      "ambientType": "night"
     },
-    lyrics: [
-      "✦ Sufi Acoustic & Desert Wind Intro ✦",
-      "Kaisi yeh lagan tu laga gaya hai",
-      "Rasta yeh naya dikha gaya hai",
-      "Tere teer ko kamaan mil gayi",
-      "Meri rooh ko pehchan mil gayi",
-      "Bulleya, Bulleya tu hi mera yaar",
-      "Mera rab tu hi, tu hi sansaar",
-      "Sufi whirling under the cosmic stars",
-      "Healing the pain of ancient scars...",
-      "✦ Campfire Sparks Rock Bridge ✦",
-      "Jal rahi hai aag mere seene mein",
-      "Maza aa raha hai ab jeene mein",
-      "Mera dil meri jaan tere naam karoon",
-      "Har sajde mein tera hi naam loon",
-      "Bulleya, Bulleya tu hi mera yaar",
-      "Mera rab tu hi, tu hi sansaar...",
-      "✦ Whirling Desert Embers Fade ✦"
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Mystic Sufi Strings ✦",
+      "Kuch rishton ka namak hi doori hota hai",
+      "Na milna bhi bohat zaroori hota hai",
+      "Bulleya... bulleya... tu hi mera yaar...",
+      "✦ Starlit Desert Echoes ✦"
     ]
   },
   {
-    id: 12,
-    title: "Tose Naina",
-    artist: "Arijit Singh",
-    album: "Mickey Virus",
-    worldName: "Monsoon Waters of Kerala",
-    mood: "Serene & Romantic",
-    badge: "Rainforest Mist",
-    tagPhrase: "rainy afternoon",
-    note: "Tropical raindrops falling on lotus leaves in emerald backwaters. The most peaceful sound in the world ♡",
-    image: "assets/images/world_12.jpg",
-    audioSrc: "assets/audio/track_12.mp3",
-    quote: "Tose naina jab se mile, ban gaye silsile...",
-    translation: "Ever since my eyes met yours, endless stories began to unfold...",
-    lore: "Gliding through emerald backwaters shrouded in tropical monsoon mist, watching raindrops form rippling mandalas upon blooming water lilies.",
-    theme: {
-      primary: "#059669",
-      accent: "#6ee7b7",
-      bgGradient: "linear-gradient(135deg, #072218 0%, #0c3527 50%, #051811 100%)",
-      glowColor: "rgba(5, 150, 105, 0.45)"
+    "id": 12,
+    "title": "Tose Naina",
+    "artist": "Arijit Singh",
+    "album": "Mickey Virus",
+    "worldName": "Monsoon Waters & Twilight Mist",
+    "mood": "Dreamy & Intimate",
+    "badge": "Emerald Dew",
+    "tagPhrase": "rain & longing",
+    "note": "Gentle raindrops falling on still waters. One of the most peaceful and intimate melodies ever created ♡",
+    "image": "assets/images/world_12.jpg",
+    "audioSrc": "assets/audio/track_12.mp3",
+    "audioMatch": "Tose Naina",
+    "quote": "Tose naina jab se mile, ban gaye silsile...",
+    "translation": "Ever since our eyes met, endless stories of love were born...",
+    "lore": "A serene lake enveloped in cool evening monsoon mist with gentle lotus petals floating across the ripples.",
+    "theme": {
+      "primary": "#10b981",
+      "accent": "#38bdf8",
+      "bgGradient": "linear-gradient(135deg, #092119 0%, #0e382b 50%, #0d2130 100%)",
+      "glowColor": "rgba(16, 185, 129, 0.45)"
     },
-    audio: {
-      ambientType: "tropical_monsoon"
+    "audio": {
+      "ambientType": "rain"
     },
-    lyrics: [
-      "✦ Tropical Raindrop Piano Intro ✦",
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Monsoon Rain & Acoustic Chords ✦",
       "Tose naina jab se mile, ban gaye silsile",
-      "Khwaabon ke aangan mein phool khile",
-      "Raindrops fall gently on emerald leaves",
-      "The heart softly whispers and believes",
-      "Sudh-budh khoyi meri chain gawaaya",
-      "Jab se tu mere sapnon mein aaya",
+      "Raindrops rippling on the quiet lake",
+      "A tender promise love will never break",
       "Tose naina jab se mile...",
-      "✦ Kerala Backwater Monsoon Flute ✦",
-      "Monsoon breeze carrying your scent afar",
-      "Guiding me home like a northern star",
-      "Teri nigaahon ne dil ko chhu liya",
-      "Khamoshiyon ne sab keh diya",
-      "Tose naina jab se mile, ban gaye silsile",
-      "Khwaabon ke aangan mein phool khile",
-      "Sudh-budh khoyi meri chain gawaaya...",
-      "Jab se tu mere sapnon mein aaya...",
-      "Ban gaye silsile... tose naina jab se mile...",
-      "✦ Emerald Rain Mist Fade ✦"
+      "✦ Emerald Twilight Rain Fade ✦"
     ]
   },
   {
-    id: 13,
-    title: "O Rangrez",
-    artist: "Javed Bashir & Shreya Ghoshal",
-    album: "Bhaag Milkha Bhaag",
-    worldName: "Courtyard of Saffron & Indigo Silks",
-    mood: "Passionate & Artisanal",
-    badge: "Vivid Silk",
-    tagPhrase: "colorful joy",
-    note: "Swirling saffron, magenta, and indigo silks dancing in the afternoon sun. May your life be filled with all the bright colors ♡",
-    image: "assets/images/world_13.jpg",
-    audioSrc: "assets/audio/track_13.mp3",
-    quote: "O rangrez, tere rang rang ke, tere rang rang ke, dhoop mein khile...",
-    translation: "O master of colors, drench me in your hues so I blossom like dawn in the sun...",
-    lore: "A sun-drenched heritage courtyard where vivid dyed saffron, crimson, and royal indigo silks flutter freely in golden afternoon sunbeams.",
-    theme: {
-      primary: "#f97316",
-      accent: "#6366f1",
-      bgGradient: "linear-gradient(135deg, #311508 0%, #461f0c 50%, #17153d 100%)",
-      glowColor: "rgba(249, 115, 22, 0.5)"
+    "id": 13,
+    "title": "O Rangrez",
+    "artist": "Javed Bashir & Shreya Ghoshal",
+    "album": "Bhaag Milkha Bhaag",
+    "worldName": "Courtyard of Silks & Dyes",
+    "mood": "Vibrant & Spiritual",
+    "badge": "Crimson Velvet",
+    "tagPhrase": "color my soul",
+    "note": "Rich fabrics drying in the evening breeze. A song about being colored in love and devotion ♡",
+    "image": "assets/images/world_13.jpg",
+    "audioSrc": "assets/audio/track_13.mp3",
+    "audioMatch": "O Rangrez",
+    "quote": "O rangrez, tere rang rang ke...",
+    "translation": "O master dyer of souls, immerse me completely in your divine shade...",
+    "lore": "A historic palace courtyard draped in flowing silks of saffron, crimson, indigo and emerald.",
+    "theme": {
+      "primary": "#f43f5e",
+      "accent": "#facc15",
+      "bgGradient": "linear-gradient(135deg, #240a12 0%, #3e1220 50%, #2b1f0d 100%)",
+      "glowColor": "rgba(244, 63, 94, 0.45)"
     },
-    audio: {
-      ambientType: "breeze_flute"
+    "audio": {
+      "ambientType": "wind"
     },
-    lyrics: [
-      "✦ Traditional Saffron Flute & Sitar Intro ✦",
-      "O rangrez, tere rang rang ke...",
-      "Dhoop mein khile, chhaon mein dhale",
-      "Apne hi rang mein mujhko dhaal de",
-      "Saffron and indigo silks unfurl in the breeze",
-      "Echoing melodies that bring my heart to ease",
-      "Ek hi boond mein saara samundar samaye",
-      "Jab tu mere roobaroo aaye",
-      "O rangrez, rangrez mere...",
-      "✦ Classical Tabla & Sarangi Jugalbandi ✦",
-      "Ghunghat utha ke jo dekha tera roop",
-      "Mithhi lagne lagi sardiyon ki dhoop",
-      "Tann man pe chha gaya kaisa yeh suroor",
-      "Hone laga dil beqasoor",
-      "Rang de chunariya prem ke rang mein",
-      "Mera tann man dhoop mein khile",
-      "O rangrez, tere rang rang ke...",
-      "✦ Vibrant Silk Courtyard Swell ✦",
-      "Apne hi rang mein mujhko dhaal de",
-      "Ek hi boond mein saara samundar samaye",
-      "Jab tu mere roobaroo aaye...",
-      "O rangrez... rangrez mere...",
-      "✦ Golden Afternoon Sunlight Fade ✦"
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Sitar & Classical Vocal Intro ✦",
+      "O rangrez mere, tere rang rang ke",
+      "Draped in silk and golden sunset light",
+      "Coloring my spirit through the night",
+      "O rangrez... o rangrez...",
+      "✦ Flowing Silk Echoes ✦"
     ]
   },
   {
-    id: 14,
-    title: "Darkhaast",
-    artist: "Arijit Singh & Sunidhi Chauhan",
-    album: "Shivaay",
-    worldName: "Nordic Fjord Aurora Borealis",
-    mood: "Epic & Breath-taking",
-    badge: "Emerald Aurora",
-    tagPhrase: "northern lights",
-    note: "Dancing ribbons of emerald and violet aurora lights over snowy fjords. Cinematic, breathless, and unforgettable ♡",
-    image: "assets/images/world_14.jpg",
-    audioSrc: "assets/audio/track_14.mp3",
-    quote: "Meri aadat bana le anjaane mein hi sahi, meri darkhaast hai yeh...",
-    translation: "Make me your habit even without knowing, this is my ardent plea to you...",
-    lore: "Standing beside a crystalline Nordic fjord beneath the dancing ribbons of emerald and violet Northern Lights, reflecting off silent glacial peaks.",
-    theme: {
-      primary: "#10b981",
-      accent: "#38bdf8",
-      bgGradient: "linear-gradient(135deg, #06201a 0%, #0d3b31 50%, #091c2f 100%)",
-      glowColor: "rgba(16, 185, 129, 0.5)"
+    "id": 14,
+    "title": "Darkhaast",
+    "artist": "Arijit Singh & Sunidhi Chauhan",
+    "album": "Shivaay",
+    "worldName": "Nordic Aurora Glacier Ridge",
+    "mood": "Epic & Romantic",
+    "badge": "Glacial Aurora",
+    "tagPhrase": "aurora lights",
+    "note": "Snow-capped peaks and vibrant green-violet northern lights dancing across the sky. Pure grandeur ♡",
+    "image": "assets/images/world_14.jpg",
+    "audioSrc": "assets/audio/track_14.mp3",
+    "audioMatch": "DARKHAAST",
+    "quote": "Iss qadar tu mujhe pyaar kar, chhad na javein...",
+    "translation": "Hold me so tenderly beneath the dancing sky, let not a whisper of doubt remain...",
+    "lore": "A crystal glacier peak where radiant green and violet auroras sweep across the starry night.",
+    "theme": {
+      "primary": "#22c55e",
+      "accent": "#a855f7",
+      "bgGradient": "linear-gradient(135deg, #092114 0%, #0e3822 50%, #201133 100%)",
+      "glowColor": "rgba(34, 197, 94, 0.45)"
     },
-    audio: {
-      ambientType: "aurora_drone"
+    "audio": {
+      "ambientType": "cosmic"
     },
-    lyrics: [
-      "✦ Nordic Aurora Cello & Ambient Wind ✦",
-      "Meri aadat bana le anjaane mein hi sahi",
-      "Meri darkhaast hai yeh, meri darkhaast hai",
-      "Aurora dancing across the icy night",
-      "Bathed in the mystical emerald light",
-      "Tham ja tu thodi der mere paas",
-      "Bujha de mere dil ki yeh pyas",
-      "Ishq ki aanch mein jalne de mujhe",
-      "Apni baahon mein pighalne de mujhe...",
-      "✦ Powerful Orchestral Fjord Swell ✦",
-      "Raat ka aanchal tham jaane de",
-      "Do dilon ko qareeb aane de",
-      "Har fasana tere naam likh diya",
-      "Apna vajood tere sang jod diya",
-      "Meri aadat bana le anjaane mein hi sahi",
-      "Meri darkhaast hai yeh, meri darkhaast hai",
-      "✦ Sunidhi & Arijit Vocal Duet Bridge ✦",
-      "Tham ja tu thodi der mere paas",
-      "Bujha de mere dil ki yeh pyas",
-      "Apni baahon mein pighalne de mujhe",
-      "Meri darkhaast hai yeh...",
-      "Meri darkhaast hai... darkhaast hai...",
-      "Raat ka aanchal tham jaane de...",
-      "✦ Glacial Aurora Borealis Fade ✦"
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Glacial Strings & Electric Guitar ✦",
+      "Iss qadar tu mujhe pyaar kar",
+      "Aurora dancing in shades of green and violet",
+      "Beneath the cosmic mountain silhouette",
+      "Darkhaast hai yeh meri...",
+      "✦ Nordic Starlight Outro ✦"
     ]
   },
   {
-    id: 15,
-    title: "Tere Bina Na Guzara E",
-    artist: "Josh Brar ft. Kinza Hashmi",
-    album: "Bunty Bains Productions",
-    worldName: "Twilight Firefly Sanctuary",
-    mood: "Poignant & Longing",
-    badge: "Firefly Dusk",
-    tagPhrase: "for quiet nights",
-    note: "Thousands of tiny glowing fireflies in a quiet forest. You are the brightest light in every room you walk into ♡",
-    image: "assets/images/world_15.jpg",
-    audioSrc: "assets/audio/track_15.mp3",
-    quote: "Tere bina na guzara ae, tu hi sahara ae...",
-    translation: "Life cannot pass without you; you alone are the anchor of my universe...",
-    lore: "A tranquil winding path through dense twilight pine trees, illuminated by thousands of twinkling fireflies rising gently into the cool night air.",
-    theme: {
-      primary: "#22c55e",
-      accent: "#a855f7",
-      bgGradient: "linear-gradient(135deg, #0e2417 0%, #153924 50%, #1e1131 100%)",
-      glowColor: "rgba(34, 197, 94, 0.45)"
+    "id": 15,
+    "title": "Tere Bina Na Guzara E",
+    "artist": "Josh Brar ft. Kinza Hashmi",
+    "album": "Single",
+    "worldName": "Enchanted Firefly Sanctuary",
+    "mood": "Tender & Loving",
+    "badge": "Emerald Firefly",
+    "tagPhrase": "glowing in the dark",
+    "note": "Thousands of tiny fireflies lighting up an enchanted forest path. Even the smallest light can guide the way ♡",
+    "image": "assets/images/world_15.jpg",
+    "audioSrc": "assets/audio/track_15.mp3",
+    "audioMatch": "Tere Bina Na Guzara",
+    "quote": "Tere bina na guzara ae, tu hi mera sahara ae...",
+    "translation": "Life has no melody without you; you are my anchor and my guiding star...",
+    "lore": "A deep lush forest where ancient moss-covered trees glow with thousands of floating fireflies.",
+    "theme": {
+      "primary": "#4ade80",
+      "accent": "#facc15",
+      "bgGradient": "linear-gradient(135deg, #092112 0%, #0e361d 50%, #24200d 100%)",
+      "glowColor": "rgba(74, 222, 128, 0.45)"
     },
-    audio: {
-      ambientType: "night_forest"
+    "audio": {
+      "ambientType": "nature"
     },
-    lyrics: [
-      "✦ Twilight Firefly Acoustic Strings ✦",
-      "Tere bina na guzara ae, tu hi sahara ae",
-      "Pulsing fireflies illuminate the grove",
-      "Guiding the path of our eternal love",
-      "Akhiyan udeek diyan tenu saari raat",
-      "Kadon hovegi mukammal apni mulaqat",
-      "Dil diyan gallan tenu dassniyan ne",
-      "Tere sang khushiyan vasniyan ne",
-      "✦ Night Forest Melody Interlude ✦",
-      "Tu hi meri rooh da kinara ae",
-      "Tere bina na guzara ae, tu hi sahara ae",
-      "Raatan lambiyan te din bechain",
-      "Bas tera hi rasta takde ne nain",
-      "Tere sang khushiyan vasniyan ne",
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Acoustic Guitar & Firefly Glow ✦",
+      "Tere bina na guzara ae, tu hi mera sahara ae",
+      "Fireflies dancing along the mossy stone path",
+      "Lighting up our world in the aftermath",
       "Tere bina na guzara ae...",
-      "Tu hi sahara ae, tu hi sahara ae...",
-      "✦ Firefly Starlight Fade ✦"
+      "✦ Soft Forest Twilight Outro ✦"
     ]
   },
   {
-    id: 16,
-    title: "Udaarian",
-    artist: "Satinder Sartaaj",
-    album: "Seasons of Sartaaj",
-    worldName: "Golden Harvest Horizon",
-    mood: "Uplifting & Free",
-    badge: "Golden Flight",
-    tagPhrase: "fly high",
-    note: "Taking flight across endless golden fields with nothing holding you back. Always chase your wildest dreams ♡",
-    image: "assets/images/world_16.jpg",
-    audioSrc: "assets/audio/track_16.mp3",
-    quote: "Laye ne udaarian, chhad de khumaarian...",
-    translation: "We have taken flight towards the skies, leaving all earthbound worries behind...",
-    lore: "Endless golden wheat fields rippling beneath a soft summer breeze, watching colorful vintage hot air balloons glide toward the horizon.",
-    theme: {
-      primary: "#eab308",
-      accent: "#38bdf8",
-      bgGradient: "linear-gradient(135deg, #2c2207 0%, #46370c 50%, #0d2638 100%)",
-      glowColor: "rgba(234, 179, 8, 0.45)"
+    "id": 16,
+    "title": "Udaarian",
+    "artist": "Satinder Sartaaj",
+    "album": "Seasons of Sartaaj",
+    "worldName": "Golden Harvest Hot Air Balloon",
+    "mood": "Joyful & Poetic",
+    "badge": "Golden Flight",
+    "tagPhrase": "soar high",
+    "note": "Soaring peacefully above golden fields in a hot air balloon. Let your dreams fly without fear ♡",
+    "image": "assets/images/world_16.jpg",
+    "audioSrc": "assets/audio/track_16.mp3",
+    "audioMatch": "Udaarian",
+    "quote": "Laye ne udaarian, chhad de khumaarian...",
+    "translation": "We have taken flight towards the endless blue, leaving all worldly worries behind...",
+    "lore": "A gentle hot air balloon floating above endless golden harvest fields at sunrise.",
+    "theme": {
+      "primary": "#facc15",
+      "accent": "#38bdf8",
+      "bgGradient": "linear-gradient(135deg, #241f0a 0%, #3d3511 50%, #0d2130 100%)",
+      "glowColor": "rgba(250, 204, 21, 0.45)"
     },
-    audio: {
-      ambientType: "meadow_wind"
+    "audio": {
+      "ambientType": "wind"
     },
-    lyrics: [
-      "✦ Golden Wheat Field Harmonium & Flute ✦",
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ Punjabi Folk Flute & Tumbi ✦",
       "Laye ne udaarian, chhad de khumaarian",
-      "Wheat fields whispering under golden skies",
-      "Watching dreams take flight before our eyes",
-      "Panchhi wangu udd chale asmaan wal",
-      "Chhad ke fikar sare beete hue kal de",
-      "Khuliyan hawayan vich saah le zara",
-      "Zindagi di mehak nu mehsoos kar zara",
-      "Laye ne udaarian, chhad de khumaarian",
-      "✦ Sartaaj Poetic Folk Symphony ✦",
-      "Udd chalo, udd chalo ambran de paar",
-      "Jitthe sajja hai kudrat da sansaar",
-      "Rabb di raza vich raazi rahiye",
-      "Har ik saah vich shukrana kahiye",
-      "Laye ne udaarian, chhad de khumaarian",
-      "Panchhi wangu udd chale asmaan wal",
-      "Khuliyan hawayan vich saah le zara...",
-      "Zindagi di mehak nu mehsoos kar zara...",
-      "Laye ne udaarian... chhad de khumaarian...",
-      "✦ Sunlit Balloon Horizon Outro ✦"
+      "Floating high above the golden harvest plain",
+      "Sunshine washing over joy and pain",
+      "✦ Poetic Folk Outro ✦"
     ]
   },
   {
-    id: 17,
-    title: "Ranjheya Ve",
-    artist: "Zain Zohaib",
-    album: "Yratta Media",
-    worldName: "Mustard Fields of Punjab",
-    mood: "Devotional & Heartfelt",
-    badge: "Sarson Bloom",
-    tagPhrase: "warm & sweet",
-    note: "Pure devotional folk magic. May your days be as bright and golden as yellow mustard blossoms in winter ♡",
-    image: "assets/images/world_17.jpg",
-    audioSrc: "assets/audio/track_17.mp3",
-    quote: "Ranjheya ve, dil ditta tenu saunh...",
-    translation: "O my eternal beloved, I have surrendered my heart to you forever...",
-    lore: "Vibrant yellow mustard flower fields stretching to the horizon, glowing intensely under the warm crimson-gold rays of a Punjabi sunset.",
-    theme: {
-      primary: "#facc15",
-      accent: "#f43f5e",
-      bgGradient: "linear-gradient(135deg, #302607 0%, #4a3a0c 50%, #3b0d18 100%)",
-      glowColor: "rgba(250, 204, 21, 0.45)"
+    "id": 17,
+    "title": "Ranjheya Ve",
+    "artist": "Zain Zohaib",
+    "album": "Yratta Media",
+    "worldName": "Mustard Fields of Punjab",
+    "mood": "Devotional & Heartfelt",
+    "badge": "Sarson Bloom",
+    "tagPhrase": "warm & sweet",
+    "note": "Pure devotional folk magic. May your days be as bright and golden as yellow mustard blossoms in winter ♡",
+    "image": "assets/images/world_17.jpg",
+    "audioSrc": "assets/audio/track_17.mp3",
+    "audioMatch": "Ranjheya Ve",
+    "quote": "Ranjheya ve, dil ditta tenu saunh...",
+    "translation": "O my eternal beloved, I have surrendered my heart to you forever...",
+    "lore": "Vibrant yellow mustard flower fields stretching to the horizon, glowing under the crimson-gold rays of sunset.",
+    "theme": {
+      "primary": "#facc15",
+      "accent": "#f43f5e",
+      "bgGradient": "linear-gradient(135deg, #261f08 0%, #42350f 50%, #290d16 100%)",
+      "glowColor": "rgba(250, 204, 21, 0.45)"
     },
-    audio: {
-      ambientType: "sunset_harmonium"
+    "audio": {
+      "ambientType": "wind"
     },
-    lyrics: [
-      "✦ Sarson Bloom Sunset Alaap ✦",
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Sarson Bloom Harmonium Alaap ✦",
       "Ranjheya ve, dil ditta tenu saunh",
       "Mustard fields shining in crimson sunset glow",
       "Where sweet melodies of love endlessly flow",
-      "Tere bina suni lagdi hai dharat saari",
-      "Tu hi meri zindagi, tu hi jaan pyari",
-      "Sajjna ve dholna tere naal ishq mera",
-      "Har saah utte likheya naam tera",
-      "Ranjheya ve, ranjheya ve...",
-      "✦ Sufi Devotional Harmonium Swell ✦",
-      "Ishq tere vich main taan jogan ban gayi",
-      "Tere naina di galiyan di ronaq ban gayi",
-      "Dil ditta tenu saunh, ranjheya ve",
-      "Tere naal ishq mera, dholna ve",
-      "Tere bina suni lagdi hai dharat saari",
-      "Tu hi meri zindagi, tu hi jaan pyari...",
       "Ranjheya ve... ranjheya ve...",
-      "Dil ditta tenu saunh...",
-      "✦ Punjabi Sunset Crimson Echo ✦"
+      "✦ Sunset Harmonium Echoes ✦"
     ]
   },
   {
-    id: 18,
-    title: "Bairan",
-    artist: "Banjaare / MC Square",
-    album: "Bairan (Animated Love Story)",
-    worldName: "Storm-Lashed Coastal Beacon",
-    mood: "Fierce & Passionate",
-    badge: "Tempest Beacon",
-    tagPhrase: "storm & light",
-    note: "A steady lighthouse in the middle of crashing stormy waves. No matter how stormy life gets, remember you have a light inside you ♡",
-    image: "assets/images/world_18.jpg",
-    audioSrc: "assets/audio/track_18.mp3",
-    quote: "Bairan hawa kyun chali re, yaadan teri leke...",
-    translation: "Why did the tempest wind blow, bringing with it echoes of your memory...",
-    lore: "A towering historic stone lighthouse standing firm upon rugged sea cliffs as crashing stormy ocean waves send white mist into the dark sky.",
-    theme: {
-      primary: "#0ea5e9",
-      accent: "#f43f5e",
-      bgGradient: "linear-gradient(135deg, #091e2b 0%, #103348 50%, #20101b 100%)",
-      glowColor: "rgba(14, 165, 233, 0.45)"
+    "id": 18,
+    "title": "Bairan",
+    "artist": "Banjaare / MC Square",
+    "album": "Bairan (Animated Love Story)",
+    "worldName": "Storm-Lashed Coastal Beacon",
+    "mood": "Fierce & Passionate",
+    "badge": "Tempest Beacon",
+    "tagPhrase": "storm & light",
+    "note": "A steady lighthouse in the middle of crashing stormy waves. No matter how stormy life gets, remember you have a light inside you ♡",
+    "image": "assets/images/world_18.jpg",
+    "audioSrc": "assets/audio/track_18.mp3",
+    "audioMatch": "Bairan",
+    "quote": "Bairan hawa kyun chali re, yaadan teri leke...",
+    "translation": "Why did the tempest wind blow, bringing with it echoes of your memory...",
+    "lore": "A towering historic stone lighthouse standing firm upon rugged sea cliffs as crashing stormy ocean waves send white mist into the dark sky.",
+    "theme": {
+      "primary": "#0ea5e9",
+      "accent": "#f43f5e",
+      "bgGradient": "linear-gradient(135deg, #091e2b 0%, #103348 50%, #20101b 100%)",
+      "glowColor": "rgba(14, 165, 233, 0.45)"
     },
-    audio: {
-      ambientType: "stormy_waves"
+    "audio": {
+      "ambientType": "rain"
     },
-    lyrics: [
-      "✦ Coastal Tempest & Lighthouse Guitar ✦",
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Coastal Tempest & Guitar ✦",
       "Bairan hawa kyun chali re, yaadan teri leke",
       "Crashing ocean tempest against the rocky shore",
       "Lighthouse beacon calling you once more",
-      "Seene mein toofan jaise uth raha hai",
-      "Har lamha teri yaadon mein dhal raha hai",
-      "Kyun chhod gaye mujhko toofanon ke beech",
-      "Aansuon ki nami meri palkan te kheench",
-      "✦ Tempest Wave Bass Drop ✦",
       "Bairan hawa kyun chali re...",
-      "Stormy winds howling through the deep night",
-      "Searching the dark ocean for the lost light",
-      "Yaadan teri leke, bairan hawa kyun chali re...",
-      "✦ Storm Spray & Lighthouse Horn ✦"
+      "✦ Tempest Ocean Outro ✦"
     ]
   },
   {
-    id: 19,
-    title: "Wishes",
-    artist: "Hasan Raheem ft. Talwiinder & Umair",
-    album: "Wishes - Single",
-    worldName: "Galaxy Observatory Summit",
-    mood: "Contemplative & Infinite",
-    badge: "Cosmic Wishes",
-    tagPhrase: "make a wish",
-    note: "A mountain observatory looking out into a deep violet galaxy. Make a silent wish on the stars tonight — it might just come true ♡",
-    image: "assets/images/world_19.jpg",
-    audioSrc: "assets/audio/track_19.mp3",
-    quote: "I make wishes on the stars tonight, hope you see the same light...",
-    translation: "Sending silent wishes across the celestial tapestry, trusting our paths intertwine...",
-    lore: "A high-altitude stargazing observatory atop a silent mountain, looking out into a breathtaking deep violet galaxy with falling meteor trails.",
-    theme: {
-      primary: "#8b5cf6",
-      accent: "#38bdf8",
-      bgGradient: "linear-gradient(135deg, #18102b 0%, #261a45 50%, #0d1e38 100%)",
-      glowColor: "rgba(139, 92, 246, 0.45)"
+    "id": 19,
+    "title": "Wishes",
+    "artist": "Hasan Raheem ft. Talwiinder & Umair",
+    "album": "Wishes - Single",
+    "worldName": "Galaxy Observatory Summit",
+    "mood": "Contemplative & Infinite",
+    "badge": "Cosmic Wishes",
+    "tagPhrase": "make a wish",
+    "note": "A mountain observatory looking out into a deep violet galaxy. Make a silent wish on the stars tonight — it might just come true ♡",
+    "image": "assets/images/world_19.jpg",
+    "audioSrc": "assets/audio/track_19.mp3",
+    "audioMatch": "Wishes",
+    "quote": "I make wishes on the stars tonight, hope you see the same light...",
+    "translation": "Sending silent wishes across the celestial tapestry, trusting our paths intertwine...",
+    "lore": "A high-altitude stargazing observatory atop a silent mountain, looking out into a deep violet galaxy with meteor trails.",
+    "theme": {
+      "primary": "#8b5cf6",
+      "accent": "#38bdf8",
+      "bgGradient": "linear-gradient(135deg, #18102b 0%, #261a45 50%, #0d1e38 100%)",
+      "glowColor": "rgba(139, 92, 246, 0.45)"
     },
-    audio: {
-      ambientType: "cosmic_starlight"
+    "audio": {
+      "ambientType": "cosmic"
     },
-    lyrics: [
-      "✦ Cosmic Observatory Synth & Echoes ✦",
+    "companionMood": "late_night",
+    "lyrics": [
+      "✦ Cosmic Observatory Synth ✦",
       "I make wishes on the stars tonight",
       "Hope you see the same starlight",
-      "Observatory high above the clouds",
-      "Far away from the rushing crowds",
       "Kash tu vi taareyan nu vekhdi hovein",
-      "Mere baare thoda sochni hovein",
-      "Cosmic nebula glowing in deep violet hues",
-      "No more feeling lonely, no more blues",
-      "✦ Starlight Space Trap Rhythm ✦",
-      "Falling meteor trails across the dark",
-      "Igniting within my soul a quiet spark",
-      "I make wishes on the stars tonight",
-      "Hope you see the same starlight",
-      "Kash tu vi taareyan nu vekhdi hovein...",
-      "Hoping everything turns out right...",
-      "I make wishes on the stars tonight...",
-      "✦ Deep Violet Galaxy Outro ✦"
+      "Mere baare thoda sochni hovein...",
+      "✦ Deep Galaxy Starlight Fade ✦"
     ]
   },
   {
-    id: 20,
-    title: "Kashish",
-    artist: "Ashish Bhatia & Omkar Singh ft. Kashish",
-    album: "Kashish - Official Video",
-    worldName: "Futuristic Sky Lounge",
-    mood: "Sophisticated & Velvet",
-    badge: "Obsidian Twilight",
-    tagPhrase: "for late night thoughts",
-    note: "High above the sparkling city lights with amber warmth. The final world in this universe, but our story is just getting started ♡",
-    image: "assets/images/world_20.jpg",
-    audioSrc: "assets/audio/track_20.mp3",
-    quote: "Yeh kashish dil ki jo hai, har lamha tera hi suroor hai...",
-    translation: "This irresistible magnetic pull of the heart turns every passing moment into ecstasy...",
-    lore: "An ultra-luxurious glass penthouse high above the glowing city lights at twilight, drinking in the quiet glamour of the boundless night.",
-    theme: {
-      primary: "#f59e0b",
-      accent: "#ec4899",
-      bgGradient: "linear-gradient(135deg, #1b131c 0%, #2c1a2e 50%, #12101b 100%)",
-      glowColor: "rgba(245, 158, 11, 0.45)"
+    "id": 20,
+    "title": "Kashish",
+    "artist": "Ashish Bhatia & Omkar Singh ft. Kashish",
+    "album": "Kashish - Official Video",
+    "worldName": "Futuristic Sky Lounge",
+    "mood": "Sophisticated & Velvet",
+    "badge": "Obsidian Twilight",
+    "tagPhrase": "for late night thoughts",
+    "note": "High above the sparkling city lights with amber warmth. The final world in this universe, but our story is just getting started ♡",
+    "image": "assets/images/world_20.jpg",
+    "audioSrc": "assets/audio/track_20.mp3",
+    "audioMatch": "KASHISH",
+    "quote": "Yeh kashish dil ki jo hai, har lamha tera hi suroor hai...",
+    "translation": "This irresistible magnetic pull of the heart turns every passing moment into ecstasy...",
+    "lore": "An ultra-luxurious glass penthouse high above the glowing city lights at twilight.",
+    "theme": {
+      "primary": "#f59e0b",
+      "accent": "#ec4899",
+      "bgGradient": "linear-gradient(135deg, #1b131c 0%, #2c1a2e 50%, #12101b 100%)",
+      "glowColor": "rgba(245, 158, 11, 0.45)"
     },
-    audio: {
-      ambientType: "velvet_lounge"
+    "audio": {
+      "ambientType": "night"
     },
-    lyrics: [
+    "companionMood": "late_night",
+    "lyrics": [
       "✦ Velvet Penthouse Sky Lounge Keys ✦",
       "Yeh kashish dil ki jo hai, har lamha tera hi suroor hai",
       "City lights bokeh sparkling in the night",
       "Velvet sky lounge bathed in amber light",
-      "Tere bina jeena lagda ajeeb ae",
-      "Tu hi mere dil de sab ton qareeb ae",
-      "Magnetic attraction pulling us near",
-      "Whispering secrets only we can hear",
-      "✦ Lounge Saxophone & Bass Groove ✦",
-      "Raat ka afsaana tere naam kiya hai",
-      "Har ik pal tere ishq mein jiya hai",
-      "Yeh kashish dil ki jo hai",
-      "Har lamha tera hi suroor hai",
-      "Tu hi mere dil de sab ton qareeb ae...",
       "Yeh kashish dil ki jo hai...",
-      "Har lamha tera hi suroor hai...",
       "✦ City Bokeh Twilight Fade ✦"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Kajra Re",
+    "artist": "Alisha Chinai, Shankar Mahadevan & Javed Ali",
+    "album": "Bunty Aur Babli",
+    "worldName": "Festive Royal Haveli Courtyard",
+    "mood": "Celebratory & Bollywood",
+    "badge": "Amber Diya Glow",
+    "tagPhrase": "dance & celebration",
+    "note": "Opulent royal arches, thousands of warm diya lamps, and sparkling chandeliers. Let your spirit dance in joyful celebration ♡",
+    "image": "assets/images/world_21.jpg",
+    "audioSrc": "assets/audio/track_21.mp3",
+    "audioMatch": "Kajra Re",
+    "quote": "Kajra re, kajra re, tere kaare kaare naina...",
+    "translation": "O dark-eyed beauty, your eyes hold the spell of a thousand starry nights...",
+    "lore": "A grand Rajasthani royal palace illuminated by thousands of golden oil lamps and marigold garlands.",
+    "theme": {
+      "primary": "#f59e0b",
+      "accent": "#f43f5e",
+      "bgGradient": "linear-gradient(135deg, #2a110a 0%, #4a1d0d 50%, #260914 100%)",
+      "glowColor": "rgba(245, 158, 11, 0.55)"
+    },
+    "audio": {
+      "ambientType": "night"
+    },
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ Royal Dholak & Shehnai Celebration ✦",
+      "Aisi nazar se dekha usne zaalim ne chauk par",
+      "Humne kaleja rakh diya chaaku ki taak par",
+      "Kajra re, kajra re, tere kaare kaare naina",
+      "Ho mere naina, mere naina, mere naina judwaa naina",
+      "✦ Sitar & Festive Beats ✦",
+      "Surmayi se jaise boondein, naina tere aise doondein",
+      "Raat ke taaron jaise chamkein",
+      "Kajra re, kajra re, tere kaare kaare naina...",
+      "✦ Grand Haveli Palace Finale ✦"
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Tutor",
+    "artist": "Cheema Y & Gur Sidhu",
+    "album": "Tutor - Single",
+    "worldName": "Bubblegum Synthwave Arcade",
+    "mood": "Playful & Youthful",
+    "badge": "Neon Arcade",
+    "tagPhrase": "cheeky & fun",
+    "note": "Retro arcade lights, neon bubblegum pinks, and cheeky beats. A world of pure nostalgic fun ♡",
+    "image": "assets/images/world_22.jpg",
+    "audioSrc": "assets/audio/track_22.mp3",
+    "audioMatch": "TUTOR",
+    "quote": "Tutor laade koi dil di padhai da...",
+    "translation": "Find me a tutor to teach me the playful lessons of the heart...",
+    "lore": "An 80s neon arcade bathed in glowing pastel cyan and magenta lights with vintage game cabinets.",
+    "theme": {
+      "primary": "#ec4899",
+      "accent": "#06b6d4",
+      "bgGradient": "linear-gradient(135deg, #240a1b 0%, #3b0e2c 50%, #09212b 100%)",
+      "glowColor": "rgba(236, 72, 153, 0.55)"
+    },
+    "audio": {
+      "ambientType": "wind"
+    },
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ 8-Bit Synth & Heavy 808 Bass ✦",
+      "Ni tu pardi college ch, main parda teriyan akhaan",
+      "Neon arcade glowing bright through the night",
+      "Tutor laade koi dil di padhai da",
+      "✦ Playful Drop & Cheerful Groove ✦"
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Kithe Reh Gaya",
+    "artist": "Neeti Mohan",
+    "album": "Kithe Reh Gaya - Single",
+    "worldName": "Fading Sunset Highway",
+    "mood": "Nostalgic & Longing",
+    "badge": "Amber Horizon",
+    "tagPhrase": "waiting for you",
+    "note": "Watching the sun dip below rolling hills while waiting for someone special. May distance only make the heart fonder ♡",
+    "image": "assets/images/world_23.jpg",
+    "audioSrc": "assets/audio/track_23.mp3",
+    "audioMatch": "Kithe Reh Gaya",
+    "quote": "Kithe reh gaya ve saanu nehar wale pul te bulake...",
+    "translation": "Where have you lingered, my love, after promising to meet by the bridge...",
+    "lore": "An open winding road through golden grassland hills at fading sunset under a dramatic violet-amber sky.",
+    "theme": {
+      "primary": "#f97316",
+      "accent": "#c084fc",
+      "bgGradient": "linear-gradient(135deg, #261208 0%, #441e0b 50%, #201130 100%)",
+      "glowColor": "rgba(249, 115, 22, 0.5)"
+    },
+    "audio": {
+      "ambientType": "wind"
+    },
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Sunset Acoustic Chords & Harmonium ✦",
+      "Kithe reh gaya ve saanu nehar wale pul te bulake",
+      "Roads stretching into the golden violet sky",
+      "Waiting for the footsteps to draw nigh",
+      "Kithe reh gaya... kithe reh gaya...",
+      "✦ Twilight Amber Breeze Fade ✦"
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Kaise Hua",
+    "artist": "Vishal Mishra",
+    "album": "Kabir Singh",
+    "worldName": "Golden Sunset Meadow of Wildflowers",
+    "mood": "Romantic & Awe-Inspiring",
+    "badge": "Golden Lily Bloom",
+    "tagPhrase": "soft & gentle wonder",
+    "note": "Soft sunbeams warming a hillside of blooming wild lilies. Love arriving so quietly you wonder when it all began ♡",
+    "image": "assets/images/world_24.jpg",
+    "audioSrc": "assets/audio/track_24.mp3",
+    "audioMatch": "Kaise Hua",
+    "quote": "Kaise hua, tu itna zaroori kaise hua...",
+    "translation": "How did this happen, how did you become as essential as my very breath...",
+    "lore": "A dreamy rolling meadow covered in blooming golden wild lilies and wildflowers at golden hour.",
+    "theme": {
+      "primary": "#fbbf24",
+      "accent": "#f472b6",
+      "bgGradient": "linear-gradient(135deg, #291c08 0%, #452e0c 50%, #290e1f 100%)",
+      "glowColor": "rgba(251, 191, 36, 0.5)"
+    },
+    "audio": {
+      "ambientType": "nature"
+    },
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Gentle Acoustic Fingerpicking ✦",
+      "Haste haste chehre pe kyun nami si chhayi hai",
+      "Kaise hua, kaise hua, tu itna zaroori kaise hua",
+      "Sunbeams dancing across wild golden lilies",
+      "Soothing all the world's quiet miseries",
+      "Kaise hua... tu itna zaroori kaise hua...",
+      "✦ Soft Meadow Wind Outro ✦"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Dilliwali Girlfriend",
+    "artist": "Arijit Singh & Sunidhi Chauhan",
+    "album": "Yeh Jawaani Hai Deewani",
+    "worldName": "Vibrant Delhi Neon Nightlife",
+    "mood": "Energetic & Electric",
+    "badge": "Delhi Neon Pulse",
+    "tagPhrase": "lively & electric",
+    "note": "Bright city lights, historic colonnade arches glowing with fairy lights, and unstoppable energy! Dance your heart out ♡",
+    "image": "assets/images/world_25.jpg",
+    "audioSrc": "assets/audio/track_25.mp3",
+    "audioMatch": "Dilliwali Girlfriend",
+    "quote": "Tere liye hi toh signal tod taad ke...",
+    "translation": "Rushing past every red light just to be where you are...",
+    "lore": "The bustling historic white arches of Connaught Place lit by festive neon signs and lively city nightlife.",
+    "theme": {
+      "primary": "#f43f5e",
+      "accent": "#38bdf8",
+      "bgGradient": "linear-gradient(135deg, #240a12 0%, #3e1220 50%, #0d212b 100%)",
+      "glowColor": "rgba(244, 63, 94, 0.55)"
+    },
+    "audio": {
+      "ambientType": "night"
+    },
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ High-Energy Brass & Dhol Intro ✦",
+      "Tere liye hi toh signal tod taad ke",
+      "Aaya Dilliwali girlfriend chhod chhad ke",
+      "Neon lights shining bright in CP town",
+      "Never gonna let this party down",
+      "✦ Electric Bollywood Dance Drop ✦"
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Sweetheart",
+    "artist": "Dev Negi",
+    "album": "Kedarnath",
+    "worldName": "Sunny Himalayan Blossom Valley",
+    "mood": "Cheerful & Flirtatious",
+    "badge": "Alpine Blossom",
+    "tagPhrase": "sweet & cute",
+    "note": "Snowy peaks in the distance, sunshine in the valley, and bright pink blossoms everywhere. Pure happiness ♡",
+    "image": "assets/images/world_26.jpg",
+    "audioSrc": "assets/audio/track_26.mp3",
+    "audioMatch": "Sweetheart",
+    "quote": "Do naina tere meethe meethe, sweetheart...",
+    "translation": "Those two sweet eyes of yours, enchanting my world...",
+    "lore": "A bright spring valley in Kedarnath blooming with thousands of pink rhododendrons under clear blue alpine skies.",
+    "theme": {
+      "primary": "#f472b6",
+      "accent": "#fde047",
+      "bgGradient": "linear-gradient(135deg, #240d1c 0%, #3d142d 50%, #29240d 100%)",
+      "glowColor": "rgba(244, 114, 182, 0.5)"
+    },
+    "audio": {
+      "ambientType": "nature"
+    },
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ Festive Dholak & Clarinet ✦",
+      "Do naina tere meethe meethe, sweetheart",
+      "Himalayan peaks glistening with spring snow",
+      "Dancing where the sweet alpine breezes blow",
+      "Sweetheart... do naina tere meethe meethe...",
+      "✦ Cheerful Mountain Folk Outro ✦"
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Meri Mummy Nu Pasand Nhi Hai Tu",
+    "artist": "Sunanda Sharma & Sukh-E",
+    "album": "Jai Mummy Di",
+    "worldName": "Colourful Pind Courtyard",
+    "mood": "Playful & Vibrant",
+    "badge": "Pind Festive Glow",
+    "tagPhrase": "naughty & lively",
+    "note": "Hanging fairylights, colorful phulkari fabrics, and endless laughter. Don't take life too seriously, just smile ♡",
+    "image": "assets/images/world_27.jpg",
+    "audioSrc": "assets/audio/track_27.mp3",
+    "audioMatch": "MUMMY NU PASAND",
+    "quote": "Meri mummy nu pasand naiyo tu, ve tera gora rang naiyo...",
+    "translation": "My mother says you're far too mischievous for me...",
+    "lore": "A festive Punjabi village courtyard adorned with colorful lights, traditional fabrics, and warm tea stalls.",
+    "theme": {
+      "primary": "#f59e0b",
+      "accent": "#ef4444",
+      "bgGradient": "linear-gradient(135deg, #261408 0%, #44220b 50%, #260a0a 100%)",
+      "glowColor": "rgba(245, 158, 11, 0.5)"
+    },
+    "audio": {
+      "ambientType": "wind"
+    },
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ Sukh-E Beats & Punjabi Harmonium ✦",
+      "Meri mummy nu pasand naiyo tu",
+      "Tents of red and saffron in the village square",
+      "Laughter and music floating in the air",
+      "✦ Bouncy Punjabi Drop ✦"
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Ik Vaari",
+    "artist": "Arijit Singh",
+    "album": "Raabta",
+    "worldName": "Twilight Rooftop Over City Lights",
+    "mood": "Romantic & Longing",
+    "badge": "Violet Twilight",
+    "tagPhrase": "just once more",
+    "note": "Looking out over the glowing city skyline at dusk. A tender plea for one more gentle embrace ♡",
+    "image": "assets/images/world_28.jpg",
+    "audioSrc": "assets/audio/track_28.mp3",
+    "audioMatch": "Ik Vaari",
+    "quote": "Ik vaari aa bhi jaa yaara, ik vaari aa...",
+    "translation": "Come back to me just once more, my beloved, just once more...",
+    "lore": "A quiet rooftop terrace looking out over thousands of sparkling city lights as twilight deepens into violet.",
+    "theme": {
+      "primary": "#8b5cf6",
+      "accent": "#ec4899",
+      "bgGradient": "linear-gradient(135deg, #160c29 0%, #251442 50%, #290d20 100%)",
+      "glowColor": "rgba(139, 92, 246, 0.5)"
+    },
+    "audio": {
+      "ambientType": "night"
+    },
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Ambient Synth & Acoustic Chords ✦",
+      "Ik vaari aa bhi jaa yaara, ik vaari aa",
+      "City lights twinkling like fallen stars below",
+      "Whispering in the quiet evening glow",
+      "Ik vaari aa... ik vaari aa...",
+      "✦ Violet Sky Skyline Outro ✦"
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Lag Ja Gale",
+    "artist": "Lata Mangeshkar",
+    "album": "Woh Kaun Thi",
+    "worldName": "Vintage Colonial Archway & Rainy Streetlamps",
+    "mood": "Timeless & Soulful",
+    "badge": "Vintage Rain Mist",
+    "tagPhrase": "timeless vintage grace",
+    "note": "Timeless classic elegance. Vintage stone arches, soft rain, and glowing streetlamps in the quiet night ♡",
+    "image": "assets/images/world_29.jpg",
+    "audioSrc": "assets/audio/track_29.mp3",
+    "audioMatch": "Lag Ja Gale",
+    "quote": "Lag ja gale ki phir ye haseen raat ho na ho...",
+    "translation": "Hold me close in this precious moment, for who knows if such a beautiful night will ever return...",
+    "lore": "A vintage colonial stone street glistening in soft rainy mist with warm amber gas lamps glowing in the dark.",
+    "theme": {
+      "primary": "#eab308",
+      "accent": "#94a3b8",
+      "bgGradient": "linear-gradient(135deg, #1c1809 0%, #30280f 50%, #111827 100%)",
+      "glowColor": "rgba(234, 179, 8, 0.5)"
+    },
+    "audio": {
+      "ambientType": "rain"
+    },
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Legendary Violins & Soft Rain Mist ✦",
+      "Lag ja gale ki phir ye haseen raat ho na ho",
+      "Shayad phir iss janam mein mulaqaat ho na ho",
+      "Raindrops falling on vintage cobblestone",
+      "Love that lives forever, never alone",
+      "Lag ja gale... ki phir ye haseen raat ho na ho...",
+      "✦ Timeless Violin Solo & Rain Echoes ✦"
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Mere Samne Wali Khidki",
+    "artist": "Kishore Kumar",
+    "album": "Padosan",
+    "worldName": "Charming Pastel Balconies",
+    "mood": "Cute & Playful",
+    "badge": "Bougainvillea Balcony",
+    "tagPhrase": "cute old-school romance",
+    "note": "Bright bougainvillea flowers, cute retro balconies, and sweet old-school melodies. A little smile for your heart ♡",
+    "image": "assets/images/world_30.jpg",
+    "audioSrc": "assets/audio/track_30.mp3",
+    "audioMatch": "Mere Samne Wali Khidki",
+    "quote": "Mere samne wali khidki mein ek chaand ka tukda rehta hai...",
+    "translation": "In the window right across from mine lives a gentle piece of the moon...",
+    "lore": "A colorful pastel neighbourhood with flowering bougainvillea balconies under a warm evening sky.",
+    "theme": {
+      "primary": "#10b981",
+      "accent": "#f472b6",
+      "bgGradient": "linear-gradient(135deg, #092118 0%, #0e3b2b 50%, #290e20 100%)",
+      "glowColor": "rgba(16, 185, 129, 0.5)"
+    },
+    "audio": {
+      "ambientType": "nature"
+    },
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ Bouncy Bongo & Whistle Intro ✦",
+      "Mere samne wali khidki mein ek chaand ka tukda rehta hai",
+      "Afsos yeh hai ke woh humse kuch ukhda ukhda rehta hai",
+      "Pink bougainvillea swaying in the breeze",
+      "Sweet melodies drifting through the trees",
+      "Mere samne wali khidki mein...",
+      "✦ Kishore Kumar Yodel Outro ✦"
+    ]
+  },
+  {
+    "id": 31,
+    "title": "No Love",
+    "artist": "Shubh",
+    "album": "No Love - Single",
+    "worldName": "Midnight Rain & Cyber Noir Boulevard",
+    "mood": "Confident & Gritty",
+    "badge": "Cyber Rain",
+    "tagPhrase": "rain & neon glow",
+    "note": "Dark wet asphalt, neon lights reflecting in puddles, and deep confident beats. Walk with pride ♡",
+    "image": "assets/images/world_31.jpg",
+    "audioSrc": "assets/audio/track_31.mp3",
+    "audioMatch": "No Love",
+    "quote": "Karan na care meri jaan, dil ch na rakhi koi bair...",
+    "translation": "Walking through the stormy dark with pride, holding no bitterness in my soul...",
+    "lore": "A modern cyberpunk metropolis boulevard where neon cyan and magenta reflect on rain-slicked black asphalt.",
+    "theme": {
+      "primary": "#38bdf8",
+      "accent": "#ec4899",
+      "bgGradient": "linear-gradient(135deg, #07131f 0%, #0b2238 50%, #24081c 100%)",
+      "glowColor": "rgba(56, 189, 248, 0.5)"
+    },
+    "audio": {
+      "ambientType": "rain"
+    },
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Heavy Trap Sub-Bass & Raindrops ✦",
+      "Karan na care meri jaan",
+      "Neon cyan reflecting in the dark rainy street",
+      "Walking to the heavy pulse of the beat",
+      "No love, no love...",
+      "✦ Cyber Noir Rain Outro ✦"
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Lahore",
+    "artist": "Guru Randhawa",
+    "album": "Lahore - Single",
+    "worldName": "Sparkling Lahore Midnight Bazaar",
+    "mood": "Festive & Vibrant",
+    "badge": "Midnight Bazaar",
+    "tagPhrase": "sparkling nights",
+    "note": "Golden lanterns, bustling old city streets, and energetic rhythms. Celebrating the beauty of life ♡",
+    "image": "assets/images/world_32.jpg",
+    "audioSrc": "assets/audio/track_32.mp3",
+    "audioMatch": "Lahore",
+    "quote": "Lagdi Lahore di aa, jis hisaab na hasdi aa...",
+    "translation": "Her radiant laughter carries the timeless charm of Lahore's glowing nights...",
+    "lore": "A vibrant historic night market illuminated by thousands of colorful lanterns and festive city lights.",
+    "theme": {
+      "primary": "#f43f5e",
+      "accent": "#f59e0b",
+      "bgGradient": "linear-gradient(135deg, #240a12 0%, #3e1220 50%, #261608 100%)",
+      "glowColor": "rgba(244, 63, 94, 0.55)"
+    },
+    "audio": {
+      "ambientType": "night"
+    },
+    "companionMood": "energetic",
+    "lyrics": [
+      "✦ Catchy Synth Melody & Urban Dhol ✦",
+      "Lagdi Lahore di aa, jis hisaab na hasdi aa",
+      "Lanterns glowing under the midnight dome",
+      "Feeling right at home in the bustling bazaar",
+      "Lagdi Lahore di aa...",
+      "✦ High-Energy Finale ✦"
+    ]
+  },
+  {
+    "id": 33,
+    "title": "With You",
+    "artist": "AP Dhillon",
+    "album": "With You - Single",
+    "worldName": "Golden Hour Coastline & Cliffside Serenade",
+    "mood": "Warm & Romantic",
+    "badge": "Golden Shore",
+    "tagPhrase": "forever with you",
+    "note": "Gentle ocean waves under golden evening sunlight. Pure peace and warm companionship ♡",
+    "image": "assets/images/world_33.jpg",
+    "audioSrc": "assets/audio/track_33.mp3",
+    "audioMatch": "With You",
+    "quote": "Tere naal rehna har pal, teri hansi meri zindagi...",
+    "translation": "Every second beside you is where peace resides; your smile is my home...",
+    "lore": "A serene coastal cliff overlooking calm ocean waves glowing in rich amber and gold sunset light.",
+    "theme": {
+      "primary": "#f97316",
+      "accent": "#fed7aa",
+      "bgGradient": "linear-gradient(135deg, #261208 0%, #441e0b 50%, #1f1a14 100%)",
+      "glowColor": "rgba(249, 115, 22, 0.5)"
+    },
+    "audio": {
+      "ambientType": "ocean"
+    },
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Warm Acoustic Strum & Smooth 808 ✦",
+      "Tere naal rehna har pal, teri hansi meri zindagi",
+      "Waves gently kissing the golden sandy shore",
+      "Loving you more and more",
+      "With you... forever with you...",
+      "✦ Golden Coastal Sunset Outro ✦"
+    ]
+  },
+  {
+    "id": 34,
+    "title": "Ve Haaniyaan",
+    "artist": "Danny & Avvy Sra",
+    "album": "Ve Haaniyaan - Single",
+    "worldName": "Serene Punjab Countryside & Mustard Sunset",
+    "mood": "Sweet & Endearing",
+    "badge": "Golden Sarson",
+    "tagPhrase": "sweet companion",
+    "note": "Endless yellow mustard fields swaying under a warm golden sun. A tender melody for someone special ♡",
+    "image": "assets/images/world_34.jpg",
+    "audioSrc": "assets/audio/track_34.mp3",
+    "audioMatch": "Ve Haaniyaan",
+    "quote": "Ve haaniyaan, ve dil jaaniyaan...",
+    "translation": "O my soulmate, my companion through every season of life...",
+    "lore": "Vast mustard fields glowing bright yellow under a warm golden sunset with gentle village breezes.",
+    "theme": {
+      "primary": "#fbbf24",
+      "accent": "#6ee7b7",
+      "bgGradient": "linear-gradient(135deg, #261d08 0%, #42320d 50%, #0d261e 100%)",
+      "glowColor": "rgba(251, 191, 36, 0.5)"
+    },
+    "audio": {
+      "ambientType": "nature"
+    },
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Sweet Mandolin & Countryside Acoustic ✦",
+      "Ve haaniyaan, ve dil jaaniyaan",
+      "Mustard blossoms swaying in the warm golden light",
+      "Everything feeling so pure and right",
+      "Ve haaniyaan... ve dil jaaniyaan...",
+      "✦ Countryside Sunset Fade ✦"
+    ]
+  },
+  {
+    "id": 35,
+    "title": "One Love",
+    "artist": "Shubh",
+    "album": "One Love - Single",
+    "worldName": "Sleek Midnight Penthouse & Neon Skyline",
+    "mood": "Modern & Stylish",
+    "badge": "Penthouse Neon",
+    "tagPhrase": "one true love",
+    "note": "Modern luxury sky lounge overlooking glowing midnight city lights. Unshakable love in a fast-moving world ♡",
+    "image": "assets/images/world_35.jpg",
+    "audioSrc": "assets/audio/track_35.mp3",
+    "audioMatch": "One Love",
+    "quote": "One love, bas tu hi hai mere dil ch...",
+    "translation": "One true love, holding the only key to my heart...",
+    "lore": "A sleek modern penthouse with glass walls overlooking an infinite glowing neon skyline under the night stars.",
+    "theme": {
+      "primary": "#c084fc",
+      "accent": "#38bdf8",
+      "bgGradient": "linear-gradient(135deg, #170d29 0%, #261445 50%, #0a1f2e 100%)",
+      "glowColor": "rgba(192, 132, 252, 0.5)"
+    },
+    "audio": {
+      "ambientType": "night"
+    },
+    "companionMood": "calm",
+    "lyrics": [
+      "✦ Smooth R&B Synth & Crisp Trap Beat ✦",
+      "One love, bas tu hi hai mere dil ch",
+      "High above the neon skyline glowing in the dark",
+      "You are the only spark",
+      "One love... one love...",
+      "✦ Midnight Skyline Echoes ✦"
+    ]
+  },
+  {
+    "id": 36,
+    "title": "Raabta (Kehte Hain Khuda)",
+    "artist": "Arijit Singh & Shreya Ghoshal",
+    "album": "Agent Vinod",
+    "worldName": "Starlight Constellation Sanctuary",
+    "mood": "Destined & Cosmic",
+    "badge": "Celestial Raabta",
+    "tagPhrase": "written in the stars",
+    "note": "A grand cosmic sanctuary where every star in the universe connects. Our story was always written in the stars ♡",
+    "image": "assets/images/world_36.jpg",
+    "audioSrc": "assets/audio/track_36.mp3",
+    "audioMatch": "Kehte Hain Khuda",
+    "quote": "Kehte hain khuda ne iss jahan mein sabhi ke liye kisi na kisi ko hai banaya...",
+    "translation": "They say God has fashioned a kindred soul for every heart wandering this universe...",
+    "lore": "The ultimate celestial observatory in the center of the cosmos, where all 36 worlds unite in starlight.",
+    "theme": {
+      "primary": "#f472b6",
+      "accent": "#38bdf8",
+      "bgGradient": "linear-gradient(135deg, #240a1b 0%, #3d1130 50%, #0c2033 100%)",
+      "glowColor": "rgba(244, 114, 182, 0.6)"
+    },
+    "audio": {
+      "ambientType": "cosmic"
+    },
+    "companionMood": "romantic",
+    "lyrics": [
+      "✦ Heavenly Cosmic Harp & Piano Intro ✦",
+      "Kehte hain khuda ne iss jahan mein sabhi ke liye",
+      "Kisi na kisi ko hai banaya har kisi ke liye",
+      "Tera milna hai uss rab ka ishaara maano",
+      "Mujhko banaya tere jaise hi kisi ke liye",
+      "✦ Celestial Starlight Strings Swell ✦",
+      "Kuch toh hai tujhse raabta",
+      "Kuch toh hai tujhse raabta",
+      "Kaise hum jaane hume kya pata",
+      "Kuch toh hai tujhse raabta...",
+      "✦ Cosmic Sanctuary Symphony Outro ✦"
     ]
   }
 ];
 
+const FINAL_MESSAGE = {
+  title: "you found them all ♡",
+  subtitle: "36 worlds · countless memories",
+  letter: "Dear you,\n\nIf you're reading this, you've wandered through all 36 little worlds in this universe. From quiet Himalayan twilights and vintage rainy streets, to golden mustard fields, neon arcades, and cosmic starlight sanctuaries.\n\nEvery single world, melody, and little thought here was made to bring a smile to your face and peace to your mind whenever the world feels loud.\n\nI hope you felt loved, understood, and at peace. No matter where you wander, this little sanctuary will always be here for you.\n\nForever and always ♡"
+};
+
+const SECRET_UNLOCKS = {
+  10: { name: "Starlight Sanctuary", icon: "✨" },
+  20: { name: "Midnight Velvet Mode", icon: "☾" },
+  36: { name: "Cosmic Wanderer Crown", icon: "👑" }
+};
+
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { SONGS_DATA, FINAL_MESSAGE };
+  module.exports = { SONGS_DATA, FINAL_MESSAGE, SECRET_UNLOCKS };
 }

@@ -20,7 +20,9 @@ mimetypes.add_type('text/html', '.html')
 class RangeRequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header('Accept-Ranges', 'bytes')
-        self.send_header('Cache-Control', 'public, max-age=3600')
+        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+        self.send_header('Pragma', 'no-cache')
+        self.send_header('Expires', '0')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', '*')

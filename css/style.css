@@ -2458,3 +2458,839 @@
     height: 15px;
   }
 }
+
+
+/* ==========================================================================
+   14. TIME-BASED ATMOSPHERE ENGINE
+   ========================================================================== */
+
+.time-atmosphere-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: background 2s ease, opacity 2s ease;
+  mix-blend-mode: soft-light;
+}
+
+body.atmosphere-morning .time-atmosphere-overlay {
+  background: radial-gradient(circle at 50% 30%, rgba(254, 215, 170, 0.18) 0%, rgba(251, 146, 60, 0.08) 60%, transparent 100%);
+  opacity: 0.9;
+}
+
+body.atmosphere-afternoon .time-atmosphere-overlay {
+  background: radial-gradient(circle at 50% 20%, rgba(254, 240, 138, 0.14) 0%, rgba(245, 158, 11, 0.05) 70%, transparent 100%);
+  opacity: 0.8;
+}
+
+body.atmosphere-evening .time-atmosphere-overlay {
+  background: radial-gradient(circle at 50% 40%, rgba(244, 114, 182, 0.16) 0%, rgba(139, 92, 246, 0.12) 60%, rgba(15, 23, 42, 0.4) 100%);
+  opacity: 0.95;
+}
+
+body.atmosphere-night .time-atmosphere-overlay {
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.14) 0%, rgba(30, 27, 75, 0.25) 70%, rgba(3, 7, 18, 0.5) 100%);
+  opacity: 1;
+}
+
+body.atmosphere-late-night .time-atmosphere-overlay {
+  background: radial-gradient(circle at 50% 45%, rgba(139, 92, 246, 0.18) 0%, rgba(24, 16, 43, 0.35) 60%, rgba(2, 6, 23, 0.6) 100%);
+  opacity: 1;
+}
+
+
+/* ==========================================================================
+   15. LITTLE CHARACTER COMPANION (300% ENLARGED & DANCE ON CLICK)
+   ========================================================================== */
+
+.aura-companion-wrapper {
+  position: absolute;
+  bottom: calc(95px + var(--sab));
+  right: calc(2rem + var(--sar));
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
+  transition: transform 0.4s var(--ease-spring), opacity 0.4s ease;
+  will-change: transform;
+}
+
+.aura-companion-wrapper:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+.companion-bubble {
+  position: relative;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(244, 114, 182, 0.5);
+  color: var(--color-pink-light, #fbcfe8);
+  font-family: var(--font-handwriting, 'Caveat', cursive);
+  font-size: 1.45rem;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow, rgba(244, 114, 182, 0.45));
+  margin-bottom: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(10px) scale(0.88);
+  transition: opacity 0.35s ease, transform 0.35s var(--ease-spring);
+  pointer-events: none;
+}
+
+.aura-companion-wrapper:hover .companion-bubble,
+.aura-companion-wrapper.active-bubble .companion-bubble {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.companion-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 50px;
+  border-width: 8px 8px 0 8px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.92) transparent transparent transparent;
+}
+
+/* 300% ENLARGED COMPANION (210px on PC, 140px on Mobile) */
+.aura-companion {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.65));
+  transition: transform 0.3s ease;
+}
+
+.companion-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.comp-glow {
+  opacity: 0.5;
+  transition: fill 1s ease;
+  animation: companionPulse 3s ease-in-out infinite alternate;
+}
+
+.comp-body-group {
+  transform-origin: 50px 85px;
+  animation: companionFloat 3.5s ease-in-out infinite alternate;
+  transition: transform 0.2s ease;
+}
+
+/* Eye visibility states */
+.comp-eyes-happy {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.comp-eyes-normal {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.aura-companion-wrapper.is-dancing .comp-eyes-normal {
+  opacity: 0;
+}
+
+.aura-companion-wrapper.is-dancing .comp-eyes-happy {
+  opacity: 1;
+}
+
+/* Arms */
+.comp-arm.left {
+  transform-origin: 26px 50px;
+  animation: armSwayLeft 3.5s ease-in-out infinite alternate;
+}
+
+.comp-arm.right {
+  transform-origin: 74px 50px;
+  animation: armSwayRight 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes armSwayLeft {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(15deg); }
+}
+
+@keyframes armSwayRight {
+  0% { transform: rotate(10deg); }
+  100% { transform: rotate(-15deg); }
+}
+
+/* Sparkle Notes */
+.comp-sparkle-note {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.comp-sparkle-note.note-1 { animation: noteFloat1 2.8s ease-in-out infinite; }
+.comp-sparkle-note.note-2 { animation: noteFloat2 3.2s ease-in-out infinite 0.5s; }
+.comp-sparkle-note.note-3 { animation: noteFloat1 3.0s ease-in-out infinite 1.0s; }
+.comp-sparkle-note.note-4 { animation: noteFloat2 2.6s ease-in-out infinite 1.5s; }
+
+@keyframes noteFloat1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+  50% { transform: translateY(-8px) rotate(-10deg); opacity: 0.9; }
+}
+
+@keyframes noteFloat2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+  50% { transform: translateY(-10px) rotate(12deg); opacity: 0.9; }
+}
+
+/* DANCE ON CLICK ANIMATION */
+.aura-companion-wrapper.is-dancing .comp-body-group {
+  animation: clickDanceJoy 0.45s ease-in-out infinite alternate !important;
+}
+
+.aura-companion-wrapper.is-dancing .comp-arm.left {
+  animation: armDanceLeft 0.22s ease-in-out infinite alternate !important;
+}
+
+.aura-companion-wrapper.is-dancing .comp-arm.right {
+  animation: armDanceRight 0.22s ease-in-out infinite alternate !important;
+}
+
+.aura-companion-wrapper.is-dancing .comp-sparkle-note {
+  opacity: 1 !important;
+  animation: noteDance 0.3s ease-in-out infinite alternate !important;
+}
+
+.aura-companion-wrapper.is-dancing .aura-companion {
+  transform: scale(1.08);
+}
+
+@keyframes clickDanceJoy {
+  0% { transform: translateY(0px) rotate(-8deg) scale(0.96, 1.04); }
+  50% { transform: translateY(-20px) rotate(0deg) scale(1.06, 0.94); }
+  100% { transform: translateY(0px) rotate(8deg) scale(0.96, 1.04); }
+}
+
+@keyframes armDanceLeft {
+  0% { transform: rotate(-50deg) translateY(-8px); }
+  100% { transform: rotate(30deg) translateY(4px); }
+}
+
+@keyframes armDanceRight {
+  0% { transform: rotate(50deg) translateY(-8px); }
+  100% { transform: rotate(-30deg) translateY(4px); }
+}
+
+@keyframes noteDance {
+  0% { transform: scale(0.8) translateY(0); }
+  100% { transform: scale(1.4) translateY(-12px); }
+}
+
+/* Base Idle Animations */
+@keyframes companionFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2.5deg); }
+  100% { transform: translateY(-3px) rotate(-2deg); }
+}
+
+@keyframes companionPulse {
+  0% { r: 40; opacity: 0.4; }
+  100% { r: 48; opacity: 0.75; }
+}
+
+/* Companion Mood Animations */
+.aura-companion-wrapper.mood-energetic:not(.is-dancing) .comp-body-group {
+  animation: companionDance 0.75s ease-in-out infinite alternate !important;
+}
+
+.aura-companion-wrapper.mood-romantic:not(.is-dancing) .comp-body-group {
+  animation: companionSway 2.8s ease-in-out infinite alternate !important;
+}
+
+.aura-companion-wrapper.mood-calm:not(.is-dancing) .comp-body-group {
+  animation: companionZen 4.5s ease-in-out infinite alternate !important;
+}
+
+.aura-companion-wrapper.mood-late_night:not(.is-dancing) .comp-body-group {
+  animation: companionNight 3.8s ease-in-out infinite alternate !important;
+}
+
+@keyframes companionDance {
+  0% { transform: translateY(0px) rotate(-6deg) scale(0.98, 1.02); }
+  50% { transform: translateY(-12px) rotate(4deg) scale(1.04, 0.96); }
+  100% { transform: translateY(0px) rotate(6deg) scale(0.98, 1.02); }
+}
+
+@keyframes companionSway {
+  0% { transform: rotate(-4deg) translateY(0); }
+  50% { transform: rotate(0deg) translateY(-6px); }
+  100% { transform: rotate(4deg) translateY(-2px); }
+}
+
+@keyframes companionZen {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes companionNight {
+  0% { transform: translateY(0) rotate(1deg); }
+  50% { transform: translateY(-4px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(1deg); }
+}
+
+/* Zen Mode hides companion gracefully */
+body.zen-mode .aura-companion-wrapper {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ==========================================================================
+   16. TODAY'S UNIVERSE DAILY RECOMMENDATION HERO CARD
+   ========================================================================== */
+
+.today-universe-card {
+  position: relative;
+  width: 100%;
+  background: radial-gradient(circle at 75% 20%, rgba(30, 27, 75, 0.75) 0%, rgba(15, 23, 42, 0.88) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  border-radius: 24px;
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 28px rgba(244, 114, 182, 0.25);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.today-universe-card:hover {
+  border-color: rgba(244, 114, 182, 0.55);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 35px rgba(244, 114, 182, 0.35);
+  transform: translateY(-2px);
+}
+
+.tu-glow-accent {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--accent-glow, rgba(244, 114, 182, 0.4));
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.tu-header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-peach, #fed7aa);
+  background: rgba(251, 146, 60, 0.18);
+  border: 1px solid rgba(251, 146, 60, 0.35);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  margin-bottom: 0.85rem;
+}
+
+.tu-sparkle {
+  color: #fbbf24;
+  animation: sparkleTwinkle 2s infinite ease-in-out;
+}
+
+.tu-body {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+.tu-thumb-wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 18px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.tu-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.today-universe-card:hover .tu-thumb-wrap img {
+  transform: scale(1.08);
+}
+
+.tu-badge-overlay {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 0.4rem 0.3rem 0.25rem 0.3rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tu-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.tu-prompt-text {
+  font-family: var(--font-handwriting, 'Caveat', cursive);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--color-pink-light, #fbcfe8);
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+
+.tu-song-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 2px 0;
+}
+
+.tu-song-artist {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.68);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 0.65rem 0;
+}
+
+.tu-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, var(--accent-primary, #f472b6) 0%, var(--accent-secondary, #fb7185) 100%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.45rem 1.1rem;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--accent-glow, rgba(244, 114, 182, 0.4));
+  transition: all 0.25s ease;
+}
+
+.tu-enter-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px var(--accent-glow, rgba(244, 114, 182, 0.6));
+}
+
+.tu-enter-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* ==========================================================================
+   17. YOUR AURA PERSONAL LISTENING PROFILE MODAL
+   ========================================================================== */
+
+.cute-aura-card {
+  position: relative;
+  width: 92%;
+  max-width: 480px;
+  background: radial-gradient(circle at 50% 15%, #1e1538 0%, #100b24 60%, #080514 100%);
+  backdrop-filter: blur(36px);
+  -webkit-backdrop-filter: blur(36px);
+  border: 1px solid rgba(244, 114, 182, 0.38);
+  border-radius: 32px;
+  padding: 2rem 1.6rem 1.6rem 1.6rem;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(244, 114, 182, 0.3);
+  animation: cardPopIn 0.4s var(--ease-spring);
+  max-height: calc(90dvh - var(--sat) - var(--sab));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.aura-profile-pill {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-pink-soft, #f472b6);
+  background: rgba(244, 114, 182, 0.15);
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  margin-bottom: 0.75rem;
+}
+
+.aura-archetype-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.35rem 0;
+  text-shadow: 0 2px 14px rgba(244, 114, 182, 0.4);
+}
+
+.aura-archetype-desc {
+  font-family: var(--font-handwriting, 'Caveat', cursive);
+  font-size: 1.25rem;
+  color: var(--color-peach, #fed7aa);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.35;
+}
+
+.aura-profile-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+}
+
+.aura-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.aura-stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.aura-stat-box:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(244, 114, 182, 0.3);
+  transform: translateY(-2px);
+}
+
+.aura-stat-box.full-width {
+  grid-column: span 2;
+}
+
+.as-icon {
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.as-value {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.as-label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.aura-keep-exploring-btn {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   18. CINEMATIC SURPRISE ME TRANSITION OVERLAY
+   ========================================================================== */
+
+.surprise-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: radial-gradient(circle at center, rgba(16, 11, 36, 0.95) 0%, rgba(5, 3, 15, 0.98) 100%);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease-cinematic);
+}
+
+.surprise-transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.surprise-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: cardPopIn 0.5s var(--ease-spring);
+}
+
+.surprise-orb-pulse {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f472b6 0%, #8b5cf6 60%, transparent 85%);
+  filter: blur(6px);
+  box-shadow: 0 0 50px rgba(244, 114, 182, 0.8), 0 0 90px rgba(139, 92, 246, 0.6);
+  animation: orbPulse 1.4s infinite alternate ease-in-out;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes orbPulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.25); opacity: 1; filter: blur(2px); }
+}
+
+.surprise-stars-twinkle {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.3em;
+  animation: sparkleTwinkle 1.5s infinite ease-in-out;
+}
+
+.surprise-title {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+  text-shadow: 0 0 20px rgba(244, 114, 182, 0.6);
+}
+
+.surprise-sub {
+  font-family: var(--font-handwriting, 'Caveat', cursive);
+  font-size: 1.35rem;
+  color: var(--color-peach, #fed7aa);
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   19. SECRET MILESTONE UNLOCK TOAST NOTIFICATION
+   ========================================================================== */
+
+.secret-milestone-toast {
+  position: fixed;
+  top: calc(1.2rem + var(--sat));
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 200;
+  background: rgba(24, 17, 46, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(251, 191, 36, 0.6);
+  border-radius: 100px;
+  padding: 0.65rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(251, 191, 36, 0.45);
+  transition: transform 0.6s var(--ease-spring), opacity 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.secret-milestone-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.smt-icon {
+  font-size: 1.3rem;
+  color: #fbbf24;
+  animation: sparkleTwinkle 1.5s infinite;
+}
+
+.smt-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fbbf24;
+}
+
+.smt-sub {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+
+/* ==========================================================================
+   20. EVOLVING CONSTELLATION ENHANCEMENTS
+   ========================================================================== */
+
+.map-progress-indicator {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-peach, #fed7aa);
+  background: rgba(251, 146, 60, 0.15);
+  border: 1px solid rgba(251, 146, 60, 0.3);
+  padding: 0.25rem 0.8rem;
+  border-radius: 100px;
+}
+
+.star-node.unexplored {
+  opacity: 0.45;
+  filter: grayscale(0.5);
+}
+
+.star-node.unexplored:hover {
+  opacity: 0.85;
+  filter: grayscale(0);
+}
+
+.star-node.explored {
+  opacity: 1;
+}
+
+.star-node.explored .star-core {
+  box-shadow: 0 0 16px var(--star-glow, #f472b6), 0 0 28px var(--star-glow, #f472b6);
+  animation: starPulseGlow 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes starPulseGlow {
+  0% { transform: scale(1); opacity: 0.85; }
+  100% { transform: scale(1.35); opacity: 1; }
+}
+
+.constellation-svg line.active-link {
+  stroke: var(--color-pink-soft, #f472b6) !important;
+  stroke-width: 1.8 !important;
+  stroke-dasharray: 4, 3 !important;
+  opacity: 0.75 !important;
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.6));
+}
+
+@media (max-width: 680px) {
+  .today-universe-card {
+    padding: 1rem;
+  }
+  .tu-thumb-wrap {
+    width: 80px;
+    height: 80px;
+  }
+  .tu-song-title {
+    font-size: 1.1rem;
+  }
+  .cute-aura-card {
+    padding: 1.5rem 1.1rem 1.2rem 1.1rem;
+    border-radius: 26px;
+  }
+  .aura-archetype-title {
+    font-size: 1.45rem;
+  }
+  .aura-companion-wrapper {
+    bottom: calc(85px + var(--sab));
+    right: calc(1rem + var(--sar));
+  }
+  .aura-companion {
+    width: 140px;
+    height: 140px;
+  }
+  .companion-bubble {
+    font-size: 1.15rem;
+    padding: 0.4rem 0.9rem;
+  }
+}
+
+
+/* ==========================================================================
+   21. HOME DRAWER LIVE SEARCH BAR
+   ========================================================================== */
+
+.home-search-bar-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  border-radius: 100px;
+  padding: 0.55rem 1rem;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.home-search-bar-wrap:focus-within {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(244, 114, 182, 0.7);
+  box-shadow: 0 6px 22px rgba(244, 114, 182, 0.35);
+}
+
+.hsb-icon {
+  font-size: 1rem;
+  margin-right: 0.65rem;
+  opacity: 0.75;
+}
+
+.home-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.home-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.84rem;
+}
+
+.hsb-clear-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 50%;
+  transition: color 0.2s ease;
+}
+
+.hsb-clear-btn:hover {
+  color: #ffffff;
+}

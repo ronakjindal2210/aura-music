@@ -75,7 +75,9 @@ class TransitionsManager {
           e.target.closest('.modal-backdrop') || 
           e.target.closest('.world-map-modal') ||
           e.target.closest('.now-playing-sheet') ||
-          e.target.closest('.cute-diary-sheet')) {
+          e.target.closest('.cute-diary-sheet') ||
+          e.target.closest('.cute-aura-card') ||
+          e.target.closest('.aura-companion-wrapper')) {
         this.touchStartX = null;
         return;
       }

@@ -119,7 +119,9 @@ class AudioEngine {
     this.isPlaying = true;
 
     if (song && song.audioSrc) {
-      this.audioEl.src = song.audioSrc;
+      // Append cache buster to bypass stale browser cache
+      const sep = song.audioSrc.includes('?') ? '&' : '?';
+      this.audioEl.src = song.audioSrc + sep + 'v=' + Date.now();
       this.audioEl.load();
       const playPromise = this.audioEl.play();
       if (playPromise !== undefined) {
