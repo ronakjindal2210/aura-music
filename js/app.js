@@ -1377,7 +1377,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let isZenMode = false;
   if (els.worldCenterStage) {
     els.worldCenterStage.addEventListener('click', (e) => {
-      if (e.target.closest('#auraCompanionWrapper')) return;
+      if (e.target.closest('#auraCompanionWrapper') || 
+          e.target.closest('.edge-nav') ||
+          e.target.closest('.modal-backdrop') ||
+          e.target.closest('.world-map-modal')) return;
       isZenMode = !isZenMode;
       document.body.classList.toggle('zen-mode', isZenMode);
     });
