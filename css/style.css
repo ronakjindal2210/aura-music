@@ -3294,3 +3294,115 @@ body.zen-mode .aura-companion-wrapper {
 .hsb-clear-btn:hover {
   color: #ffffff;
 }
+
+
+/* ==========================================================================
+   22. ULTRA-PERFORMANCE MOBILE OPTIMIZATIONS (60FPS HARDWARE ACCELERATION)
+   ========================================================================== */
+
+/* GPU Hardware Acceleration Promotion */
+.background-stage,
+.bg-layer,
+.time-atmosphere-overlay,
+.canvas-particles,
+.aura-companion-wrapper,
+.bottom-dock-container,
+.aura-mini-player,
+.now-playing-modal,
+.home-drawer,
+.world-map-modal,
+.modal-your-aura,
+.modal-diary {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Mobile-Specific Performance Tweaks */
+@media (max-width: 768px) {
+  /* Reduce blur intensity for ultra-smooth rendering on mobile GPUs */
+  .aura-mini-player {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    background: rgba(12, 18, 34, 0.92) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .home-drawer {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    background: rgba(14, 10, 28, 0.96) !important;
+  }
+
+  .now-playing-modal {
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    background: rgba(12, 9, 24, 0.97) !important;
+  }
+
+  .modal-your-aura,
+  .world-map-modal,
+  .modal-diary,
+  .modal-personal-note,
+  .modal-final-secret {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    background: rgba(15, 11, 30, 0.97) !important;
+  }
+
+  /* Smooth Touch Momentum Scrolling */
+  .home-drawer-content,
+  .now-playing-content,
+  .diary-body,
+  .constellation-viewport,
+  .home-worlds-scroll {
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    scroll-behavior: smooth !important;
+  }
+
+  /* Lightweight, smooth companion animation on mobile */
+  .aura-companion {
+    width: 130px !important;
+    height: 130px !important;
+    contain: layout style paint;
+  }
+
+  .companion-svg {
+    animation: floatCompanionMobile 4.5s ease-in-out infinite alternate !important;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4)) !important;
+  }
+
+  @keyframes floatCompanionMobile {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+    100% { transform: translateY(0px) rotate(-1.5deg); }
+  }
+
+  /* Simplify companion secondary elements on mobile */
+  .companion-note-1,
+  .companion-note-2 {
+    display: none !important;
+  }
+
+  /* Fast image decoding and zero-lag rendering */
+  .bg-layer img,
+  .hw-thumb-wrap img,
+  .tu-thumb-wrap img,
+  .sheet-art-wrap img {
+    image-rendering: auto;
+    content-visibility: auto;
+  }
+
+  /* Zero-lag button tap response */
+  button,
+  .home-world-card,
+  .star-node,
+  .mini-btn {
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+}

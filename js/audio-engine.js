@@ -170,7 +170,7 @@ class AudioEngine {
       // Return simulated subtle pulse so visualizer still dances nicely on mobile
       const time = Date.now() * 0.002;
       const simBass = (Math.sin(time * 2.5) * 0.5 + 0.5) * (this.isPlaying ? 0.35 : 0.05);
-      return { bass: simBass, mids: 0.15, treble: 0.1, overall: simBass, raw: new Uint8Array(32) };
+      return { bass: simBass, mids: 0.15, treble: 0.1, overall: simBass };
     }
 
     try {
